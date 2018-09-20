@@ -5,27 +5,27 @@ Class conteneurClient
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesClients;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesClients = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
 	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE De clients-------------------------------------------------------------------------------
 	public function nbClient()
 		{
 		return $this->lesClients->count();
-		}	
-		
+		}
+
 	//METHODE RETOURNANT LA LISTE DES Clients-----------------------------------------------------------------------------------------
 	public function listeDesClients()
 		{
@@ -35,7 +35,7 @@ Class conteneurClient
 			}
 		return $liste;
 		}
-		
+
 		//METHODE RETOURNANT LA LISTE DES CLIENTS DANS UNE BALISE <SELECT>------------------------------------------------------------------
 	public function lesClientsAuFormatHTML()
 		{
@@ -46,9 +46,9 @@ Class conteneurClient
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
+		}
 
-//METHODE RETOURNANT UN CLIENT A PARTIR DE SON NUMERO--------------------------------------------	
+//METHODE RETOURNANT UN CLIENT A PARTIR DE SON NUMERO--------------------------------------------
 	public function donneObjetClientDepuisNumero($unIdClient)
 		{
 		//initialisation d'un booléen (on part de l'hypothèse que le client n'existe pas)
@@ -66,14 +66,14 @@ Class conteneurClient
 				$trouve=true;
 				//sauvegarde du client courant
 				$leBonClient = $iClient->current();
-				
+
 				}
 			//SINON on passe au client suivant
 			else
 				$iClient->next();
 			}
 		return $leBonClient;
-		}		
+		}
 	public function verificationExistanceClient($unLogin, $unPassword)
 	{
 		//echo $unLogin."<br/>";
@@ -106,7 +106,27 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-	}
-	}
-	
-?> 
+		}
+
+		public function verificationDateAbonnement($unLogin)
+		{
+			$valide=0;
+			$datetime2 = new DateTime('2018-09-20'); //Date du jour
+			$iClient = $this->lesClients->getIterator();
+
+				$testLogin = trim($iClient->current()->getLoginClient());
+				$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient()); //Recuperation de la date abonnement du client
+				$datetime1 = new DateTime($testDateAbonnement); //La date d'abonnement du client
+
+				$interval = date_diff($datetime2, $datetime1); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
+				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
+				if($NbdeJourAbonné >= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
+				{
+					$valide=1; //L'abonnement est encore valide
+				}
+
+				return $valide;
+			}
+		}
+
+?>
