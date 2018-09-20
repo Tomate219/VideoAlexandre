@@ -94,7 +94,7 @@ Class conteneurClient
 			//echo "Login : ".strcmp($unLogin,$testLogin)."<br/>".$test;
 			//echo "Password : ".strcmp($unPassword,$testPassword)."<br/>".$test2;
 			//On test avec la fonction strcmp
-			if (strcmp($unPassword,$testPassword)===0 && strcmp($unPassword,$testPassword)===0)
+			if (strcmp($unLogin,$testLogin)===0 && strcmp($unPassword,$testPassword)===0)
 				{
 				//maj du booléen
 				$trouve=1;
@@ -126,6 +126,11 @@ Class conteneurClient
 				}
 
 				return $valide;
+			}
+			public function changementMotDePasse($unMotDePasse)
+			{
+					$LoginClient = trim($iClient->current()->getLoginClient());
+					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
 			}
 		}
 
