@@ -1,31 +1,32 @@
 ﻿<?php
+session_start();
 include_once('Modeles/Metiers/episode.php');
 
 Class conteneurEpisode
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesEpisodes;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesEpisodes = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UN episode------------------------------------------------------------------------------
 	public function ajouteUnEpisode($unIdEpisode,$unTitreEpisode,$uneDureeEpisode, $laSaison)
 		{
 		$unEpisode = new episode($unIdEpisode,$unTitreEpisode,$uneDureeEpisode, $laSaison);
 		$this->lesEpisodes->append($unEpisode);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE d'épisodes-------------------------------------------------------------------------------
 	public function nbEpisodes()
 		{
 		return $this->lesEpisodes->count();
-		}	
-		
+		}
+
 	//METHODE RETOURNANT LA LISTE DES Episodes-----------------------------------------------------------------------------------------
 	public function listeDesEpisodes()
 		{
@@ -35,7 +36,7 @@ Class conteneurEpisode
 			}
 		return $liste;
 		}
-		
+
 		//METHODE RETOURNANT LA LISTE DES Episodes DANS UNE BALISE <SELECT>------------------------------------------------------------------
 	public function lesEpisodesAuFormatHTML()
 		{
@@ -46,8 +47,8 @@ Class conteneurEpisode
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
-	
+		}
+
 	}
-	
-?> 
+
+?>

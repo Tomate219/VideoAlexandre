@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include_once('Modeles/Metiers/client.php');
 
 Class conteneurClient

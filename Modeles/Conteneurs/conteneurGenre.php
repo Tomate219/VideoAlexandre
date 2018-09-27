@@ -1,31 +1,32 @@
 ﻿<?php
+session_start();
 include_once('Modeles/Metiers/genre.php');
 
 Class conteneurGenre
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesGenres;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesGenres = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UN genre------------------------------------------------------------------------------
 	public function ajouteUnGenre($unId‪Genre, $unLibelleGenre)
 		{
 		$unGenre = new genre($unId‪Genre, $unLibelleGenre);
 		$this->lesGenres->append($unGenre);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE de genres-------------------------------------------------------------------------------
 	public function nbGenre()
 		{
 		return $this->lesGenres->count();
-		}	
-		
+		}
+
 	//METHODE RETOURNANT LA LISTE DES Genres-----------------------------------------------------------------------------------------
 	public function listeDesGenres()
 		{
@@ -43,7 +44,7 @@ Class conteneurGenre
 			$liste=$liste."</tbody></table></div></div>";
 		return $liste;
 		}
-		
+
 		//METHODE RETOURNANT LA LISTE DES genres DANS UNE BALISE <SELECT>------------------------------------------------------------------
 	public function lesGenresAuFormatHTML()
 		{
@@ -54,9 +55,9 @@ Class conteneurGenre
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
+		}
 
-//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------	
+//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------
 	public function donneObjetGenreDepuisNumero($unIdGenre)
 		{
 		//initialisation d'un booléen (on part de l'hypothèse que le genre n'existe pas)
@@ -74,15 +75,15 @@ Class conteneurGenre
 				$trouve=true;
 				//sauvegarde du genre courant
 				$leBonGenre = $iGenre->current();
-				
+
 				}
 			//SINON on passe au genre suivant
 			else
 				$iGenre->next();
 			}
 		return $leBonGenre;
-		}		
-	
+		}
+
 	}
-	
-?> 
+
+?>

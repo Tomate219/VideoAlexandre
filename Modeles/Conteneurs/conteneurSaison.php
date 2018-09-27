@@ -1,43 +1,44 @@
 ﻿<?php
+session_start();
 include_once('Modeles/Metiers/saison.php');
 
 Class conteneurSaison
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesSaisons;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesSaisons = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UNE SAISON------------------------------------------------------------------------------
 	public function ajouteUneSaison($unIdSaison,$uneAnneeSaison, $unNbrEpisodeSaison, $laSerie)
 		{
 		$uneSaison = new saison($unIdSaison,$uneAnneeSaison, $unNbrEpisodeSaison, $laSerie);
 		$this->lesSaisons->append($uneSaison);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE DE SAISON-------------------------------------------------------------------------------
 	public function nbSaisons()
 		{
 		return $this->lesSaisons->count();
-		}	
-		
+		}
+
 	//METHODE RETOURNANT LA LISTE DES SAISONS-----------------------------------------------------------------------------------------
 	public function listeDesSaisons()
 		{
 		$liste = '';
 		foreach ($this->lesSaisons as $uneSaison)
-			{	
+			{
 				$laSerie=$uneSaison->getLaSerie();
 				$liste = $liste.'Serie :'.$laSerie->getTitreSerie().'  -> Saison N° : '.$uneSaison->getIdSaison().'><br>';
 			}
 		return $liste;
 		}
-		
+
 	//METHODE RETOURNANT LA LISTE DES saisons DANS UNE BALISE <SELECT>------------------------------------------------------------------
 	public function lesSaisonsAuFormatHTML()
 		{
@@ -48,9 +49,9 @@ Class conteneurSaison
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
+		}
 
-//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------	
+//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------
 	public function donneObjetSaisonDepuisNumero($unIdSerie,$unIdSaison)
 		{
 		//initialisation d'un booléen (on part de l'hypothèse que la saison n'existe pas)
@@ -69,15 +70,15 @@ Class conteneurSaison
 				$trouve=true;
 				//sauvegarde de la saison courant
 				$laBonneSaison = $iSaison->current();
-				
+
 				}
 			//SINON on passe à la saison suivante
 			else
 				$iSaison->next();
 			}
 		return $laBonneSaison;
-		}		
-	
+		}
+
 	}
-	
-?> 
+
+?>

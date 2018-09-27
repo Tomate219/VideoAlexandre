@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include 'Conteneurs/conteneurClient.php';
 include 'Conteneurs/conteneurEmprunt.php';
 include 'Conteneurs/conteneurEpisode.php';
