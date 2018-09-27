@@ -173,7 +173,7 @@ Class gestionVideo
 			}
 			else
 			{
-				echo "Vous devez renouvelez votre abonnement";
+				echo "Vous devez renouveler votre abonnement";
 			}
 		}
 		return $resultat;
