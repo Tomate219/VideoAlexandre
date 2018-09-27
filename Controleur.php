@@ -55,7 +55,6 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function affichePage($action,$vue)
 		{
-
 		//SELON la vue demandée
 		switch ($vue)
 			{
@@ -83,6 +82,7 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	private function vueCompte($action)
 		{
+
 		//SELON l'action demandée
 		switch ($action)
 			{
@@ -95,28 +95,13 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				// ici il faut pouvoir modifier le mot de passe de l'utilisateur
-				require 'Vues/construction.php';
+//////////////////////////Clément///////////////////////
+
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
 				// ici il faut pouvoir recuperer un nouveau utilisateur
-				$unLogin=$_GET['login'];
-				$unPassword=$_GET['password'];
-				$unNom=$_GET['nomClient'];
-				$unPrénom=$_GET['prenomClient'];
-				$unMail=$_GET['emailClient'];
-				$uneDate=$_GET['dateAbonnementClient'];
-				$resultat=$this->maVideotheque->verifLoginNU($unLogin, $unPassword);
-						//si le client existe alors j'affiche le menu et la page visuGenre.php
-						if($resultat==1)
-						{
-							break;
-						}
-						else{
-				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
-			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-		}
+				require 'Vues/construction.php';
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
