@@ -43,7 +43,7 @@ Class conteneurGenre
 		{
 			$liste = $liste.'<tr>';
 			$a = 0;
-			 while(($a<4) && ($j<$i))
+			 while(($a<3) && ($j<$i))
 			 {
 				 $unGenre=$tab[$j];
 				 $j++;
