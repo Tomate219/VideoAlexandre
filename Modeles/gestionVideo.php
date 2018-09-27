@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include 'Conteneurs/conteneurClient.php';
 include 'Conteneurs/conteneurEmprunt.php';
 include 'Conteneurs/conteneurEpisode.php';
@@ -164,6 +165,18 @@ Class gestionVideo
 	public function verifLogin($unLogin, $unPassword)
 	{
 		$resultat=$this->tousLesClients->verificationExistanceClient($unLogin, $unPassword);
+		if ($resultat == 1)
+		{
+			$testDateAbonnement=$this->tousLesClients->verificationDateAbonnement($unLogin);
+			if($testDateAbonnement == 1)
+			{
+				echo "Vous êtes abonné à notre vidéotheque";
+			}
+			else
+			{
+				echo "Vous devez renouvelez votre abonnement";
+			}
+		}
 		return $resultat;
 	}
 

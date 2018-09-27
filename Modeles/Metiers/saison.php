@@ -1,12 +1,13 @@
 ﻿<?php
+session_start();
 Class saison
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
-	private $idSaison; 
-	private $anneeSaison; 
+	private $idSaison;
+	private $anneeSaison;
 	private $nbrEpisodeSaison;
 	private $laSerie;
-		
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct($unIdSaison,$uneAnneeSaison, $unNbrEpisodeSaison, $laSerie)
 		{
@@ -15,7 +16,7 @@ Class saison
 		$this->nbrEpisodeSaison = $unNbrEpisodeSaison;
 		$this->laSerie = $laSerie;
 		}
-	
+
 	//ACCESSEURS-------------------------------------------------------------------------------
 	public function getIdSaison()
 		{
@@ -33,9 +34,9 @@ Class saison
 		{
 		return $this->laSerie;
 		}
-		
+
 	//SETTEUR------------------------------------------------------------
-	
+
 	public function setIdSaison($unIdSaison)
 		{
 		$this->idSaison = $unIdSaison;
@@ -48,12 +49,12 @@ Class saison
 		{
 		$this->nbrEpisodeSaison = $unNbrEpisodeSaison;
 		}
-		
+
 	public function setLaSerie($laSerie)
 		{
 		$this->laSerie = $laSerie;
 		}
-	
+
 	}
-	
+
 ?>

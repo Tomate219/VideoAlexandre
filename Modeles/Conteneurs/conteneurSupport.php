@@ -1,30 +1,31 @@
 ﻿<?php
+session_start();
 include_once('Modeles/Metiers/support.php');
 
 Class conteneurSupport
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesSupports;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesSupports = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UN Support------------------------------------------------------------------------------
 	public function ajouteUnSupport($unIdSupport, $unTitreSupport, $unRealisateurSupport, $uneImageSupport, $leGenreSupport)
 		{
 		$unSupport = new support($unIdSupport, $unTitreSupport, $unRealisateurSupport, $uneImageSupport, $leGenreSupport);
 		$this->lesSupports->append($unSupport);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE de Support-------------------------------------------------------------------------------
 	public function nbSupports()
 		{
 		return $this->lesSupports->count();
-		}	
+		}
 	//METHODE RETOURNANT LA LISTE DES  films-----------------------------------------------------------------------------------------
 	public function listeDesSupports()
 		{
@@ -44,9 +45,9 @@ Class conteneurSupport
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
-	
-//METHODE RETOURNANT UN Support A PARTIR DE SON NUMERO--------------------------------------------	
+		}
+
+//METHODE RETOURNANT UN Support A PARTIR DE SON NUMERO--------------------------------------------
 	public function donneObjetSupportDepuisNumero($unIdSupport)
 		{
 		//initialisation d'un booléen (on part de l'hypothèse que le Support n'existe pas)
@@ -64,7 +65,7 @@ Class conteneurSupport
 				$trouve=true;
 				//sauvegarde le Support courant
 				$leBonSupport = $iSupport->current();
-				
+
 				}
 			//SINON on passe au Support suivant
 			else
@@ -72,8 +73,8 @@ Class conteneurSupport
 			}
 			return $leBonSupport;
 		}
-	
-	
+
+
 	}
-	
-?> 
+
+?>

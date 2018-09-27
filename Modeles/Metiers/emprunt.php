@@ -1,13 +1,14 @@
 ﻿<?php
+session_start();
 Class emprunt
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
-	private $idEmprunt; 
-	private $dateEmprunt; 
+	private $idEmprunt;
+	private $dateEmprunt;
 	private $leClient;
 	private $leSupport;
-	
-	
+
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct($unIdEmprunt, $uneDateEmprunt,$unClient,$unSupport)
 		{
@@ -16,7 +17,7 @@ Class emprunt
 		$this->leClient = $unClient;
 		$this->leSupport = $unSupport;
 		}
-	
+
 	//ACCESSEURS-------------------------------------------------------------------------------
 	public function getIdEmprunt()
 		{
@@ -34,9 +35,9 @@ Class emprunt
 	{
 		return $this->leSupport;
 	}
-	
+
 	//SETTEUR------------------------------------------------------------
-	
+
 	public function setIdEmprunt($unIdEmprunt)
 		{
 		$this->idEmprunt = $unIdEmprunt;
@@ -45,8 +46,8 @@ Class emprunt
 		{
 		$this->dateEmprunt = $uneDateEmprunt;
 		}
-		
-		
+
+
 	}
-	
+
 ?>

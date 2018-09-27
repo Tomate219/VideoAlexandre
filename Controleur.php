@@ -95,12 +95,13 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				// ici il faut pouvoir modifier le mot de passe de l'utilisateur
-				require 'Vues/construction.php';
+//////////////////////////Clément///////////////////////
+
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
 				// ici il faut pouvoir recuperer un nouveau utilisateur
+
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
 				$unNom=$_GET['nomClient'];
@@ -109,6 +110,7 @@ class Controleur
 				$uneDate=$_GET['dateAbonnementClient'];
 				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
+
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :

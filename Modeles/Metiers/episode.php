@@ -1,12 +1,13 @@
 ﻿<?php
+session_start();
 Class episode
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
-	private $idEpisode; 
-	private $titreEpisode; 
+	private $idEpisode;
+	private $titreEpisode;
 	private $dureeEpisode;
 	private $laSaison;
-		
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct($unIdEpisode,$unTitreEpisode,$uneDureeEpisode, $laSaison)
 		{
@@ -15,7 +16,7 @@ Class episode
 		$this->dureeEpisode = $uneDureeEpisode;
 		$this->laSaison = $laSaison;
 		}
-	
+
 	//ACCESSEURS-------------------------------------------------------------------------------
 	public function getIdEpisode()
 		{
@@ -32,9 +33,9 @@ Class episode
 	public function getLaSaisonEpisode()
 		{
 		return $this->laSaison;
-		}		
+		}
 	//SETTEUR------------------------------------------------------------
-	
+
 	public function setIdEpisode($unIdEpisode)
 		{
 		$this->idEpisode = $unIdEpisode;
@@ -51,7 +52,7 @@ Class episode
 		{
 		$this->laSaison = $uneSaisonDeLEpisode;
 		}
-	
+
 	}
-	
+
 ?>

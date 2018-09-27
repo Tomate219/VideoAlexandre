@@ -1,17 +1,18 @@
 ﻿<?php
+session_start();
 include ('support.php');
 Class film extends support
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
-	private $dureeFilm; 
-			
+	private $dureeFilm;
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct($unIdFilm, $unTitreSupport, $unRealisateurSupport, $uneImageSupport, $leGenreSupport,$laDureeFilm)
 		{
 		parent::__construct($unIdFilm,$unTitreSupport,$unRealisateurSupport,$uneImageSupport, $leGenreSupport);
 		$this->dureeFilm = $laDureeFilm;
 		}
-	
+
 	//ACCESSEURS-------------------------------------------------------------------------------
 	public function getDureeFilm()
 		{
@@ -32,8 +33,8 @@ Class film extends support
 	public function getUneImageDuFilm()
 	{
 		return parent::getImageSupport;
-	}	
-		
+	}
+
 	public function getLeGenreDuFilm()
 	{
 		return parent::getLeGenreDeSupport()->getLibelleGenre();
@@ -41,14 +42,14 @@ Class film extends support
 	public function getLeIdGenreDuFilm()
 	{
 		return parent::getLeGenreDeSupport()->getIdGenre();
-	}		
+	}
 	//SETTEUR------------------------------------------------------------
-	
+
 	public function setDureeFilm($uneDureeFilm)
 		{
 		$this->dureeFilm = $uneDureeFilm;
 		}
-		
+
 	}
-	
+
 ?>
