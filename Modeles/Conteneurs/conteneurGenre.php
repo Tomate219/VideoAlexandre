@@ -41,19 +41,16 @@ Class conteneurGenre
 		}
 		for($j=0;$j<$i;$j++)
 		{
-			echo 'valeur de j avant'.$j;
 			$liste = $liste.'<tr>';
 			$a = 0;
 			 while(($a<3) && ($j<$i))
 			 {
-				 echo 'toto';
 				 $unGenre=$tab[$j];
 				 $j++;
 				 $liste = $liste.'<td class="text-white td-table">'.$unGenre->getIdGenre().'</td><td class="text-white td-table"><p class="flotte"><img src=Images/'.$j.'.jpg></p><p>'.$unGenre->getLibelleGenre().'</p></td>';
 				 $a++;
 			 }
 			 $j--;
-			 echo 'valeur de j apres'.$j;
 		$liste = $liste.'</tr>';
 		}
 			$liste=$liste."</tbody></table></div></div>";
