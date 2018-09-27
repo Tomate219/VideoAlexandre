@@ -90,8 +90,21 @@ class Controleur
 			//CAS visualisation de mes informations-------------------------------------------------------------------------------------------------
 			case 'visualiser' :
 				//ici il faut pouvoir avoir accès au information de l'internaute connecté
-				require 'Vues/construction.php';
-				break;
+				$unLogin=$_GET['login'];
+				$unPassword=$_GET['password'];
+				$unNom=$_GET['nomClient'];
+				$unPrénom=$_GET['prenomClient'];
+				$unMail=$_GET['emailClient'];
+				$uneDate=$_GET['dateAbonnementClient'];
+				$resultat=$this->maVideotheque->verifLoginNU($unLogin, $unPassword);
+						//si le client existe alors j'affiche le menu et la page visuGenre.php
+						if($resultat==1)
+						{
+							break;
+						}
+						else{
+				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
+			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
