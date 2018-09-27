@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class accesBD
 	{
@@ -98,7 +98,7 @@ class accesBD
 		//génération automatique de l'identifiant
 		$sonId = $this->donneProchainIdentifiant("client","idClient");
 
-		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,loginClient, pwdClient) VALUES (?,?,?,?,?,?)");
+		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
 		//définition de la requête SQL
 		$requete->bindValue(1,$unNomClient);
 		$requete->bindValue(2,$unPrenomClient);
@@ -392,17 +392,6 @@ class accesBD
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-			private function ModiferLeMotDePasse($unNvMDP,$unLogin)
-			{
-				$Changement;
-				$LeNvMDP = $this->specialCase("UPDATE client SET pwd=".$unNvMDP." WHERE login=".$unLogin.";");
-				$requete = $this->conn->prepare($LeNvMDP);
-				if($requete->execute())
-				{
-					$Changement=1;
-				}
-				return $Changement;
-			}
 	}
 
 ?>
