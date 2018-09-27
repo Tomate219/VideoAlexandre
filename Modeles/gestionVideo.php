@@ -167,6 +167,12 @@ Class gestionVideo
 		return $resultat;
 	}
 
+	public function verifLoginNU($unLogin)
+	{
+		$resultat=$this->tousLesClients->verificationExistanceClient($unLogin);
+		return $resultat;
+	}
+
 
 
 

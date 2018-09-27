@@ -107,8 +107,16 @@ class Controleur
 				$unPrénom=$_GET['prenomClient'];
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
+				$resultat=$this->maVideotheque->verifLoginNU($unLogin, $unPassword);
+						//si le client existe alors j'affiche le menu et la page visuGenre.php
+						if($resultat==1)
+						{
+							break;
+						}
+						else{
 				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
+		}
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
