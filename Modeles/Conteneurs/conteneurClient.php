@@ -14,8 +14,9 @@ Class conteneurClient
 		}
 
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
+	public function ajouteUnClient( $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
+		$unIdClient=	Count($this->lesClients);
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
 
@@ -107,6 +108,7 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
+
 		}
 
 		public function verificationDateAbonnement($unLogin)
@@ -134,5 +136,9 @@ Class conteneurClient
 					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
 			}
 		}
+
+	}	
+	}
+
 
 ?>
