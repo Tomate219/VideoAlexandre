@@ -55,6 +55,7 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function affichePage($action,$vue)
 		{
+
 		//SELON la vue demandée
 		switch ($vue)
 			{
@@ -82,7 +83,6 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	private function vueCompte($action)
 		{
-
 		//SELON l'action demandée
 		switch ($action)
 			{
@@ -90,6 +90,17 @@ class Controleur
 			//CAS visualisation de mes informations-------------------------------------------------------------------------------------------------
 			case 'visualiser' :
 				//ici il faut pouvoir avoir accès au information de l'internaute connecté
+				require 'Vues/construction.php';
+				break;
+
+			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
+			case 'modifier' :
+				// ici il faut pouvoir modifier le mot de passe de l'utilisateur
+				require 'Vues/construction.php';
+				break;
+			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
+			case 'nouveauLogin' :
+				// ici il faut pouvoir recuperer un nouveau utilisateur
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
 				$unNom=$_GET['nomClient'];
@@ -105,16 +116,7 @@ class Controleur
 						else{
 				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-
-			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
-			case 'modifier' :
-//////////////////////////Clément///////////////////////
-
-				break;
-			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
-			case 'nouveauLogin' :
-				// ici il faut pouvoir recuperer un nouveau utilisateur
-				require 'Vues/construction.php';
+		}
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :

@@ -392,17 +392,6 @@ class accesBD
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-			private function ModiferLeMotDePasse($unNvMDP,$unLogin)
-			{
-				$Changement;
-				$LeNvMDP = $this->specialCase("UPDATE client SET pwd=".$unNvMDP." WHERE login=".$unLogin.";");
-				$requete = $this->conn->prepare($LeNvMDP);
-				if($requete->execute())
-				{
-					$Changement=1;
-				}
-				return $Changement;
-			}
 	}
 
 ?>

@@ -164,25 +164,16 @@ Class gestionVideo
 	public function verifLogin($unLogin, $unPassword)
 	{
 		$resultat=$this->tousLesClients->verificationExistanceClient($unLogin, $unPassword);
-		if ($resultat == 1)
-		{
-			$testDateAbonnement=$this->tousLesClients->verificationDateAbonnement($unLogin);
-			if($testDateAbonnement == 1)
-			{
-				echo "Vous êtes abonné à notre vidéotheque";
-			}
-			else
-			{
-				echo "Vous devez renouveler votre abonnement";
-			}
-		}
 		return $resultat;
 	}
 
-		public function verifLoginNU($unLogin)
-		{
-			$resultat=$this->tousLesClients->verificationExistanceClient($unLogin);
-}
+	public function verifLoginNU($unLogin)
+	{
+		$resultat=$this->tousLesClients->verificationExistanceClient($unLogin);
+		return $resultat;
+	}
+
+
 
 
 

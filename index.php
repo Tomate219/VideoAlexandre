@@ -8,8 +8,10 @@ function chargerPage()
 	$monControleur->afficheEntete();
 		if(isset($_GET['login']))
 		{
+
 				if ((isset($_GET['vue']))&& (isset($_GET['action'])))
-				{   $monControleur->affichePage($_GET['action'],$_GET['vue']);
+				{
+					 $monControleur->affichePage($_GET['action'],$_GET['vue']);
 				}
 		}
 		else
@@ -74,13 +76,15 @@ function chargerPage()
                                         </form>
                                     </td>
                                     <td class='justify-content-center td-table'>
-                                        <form href = 'index.php?vue=compte&action=nouveauLogin' method='post'>
+                                        <form href = 'index.php' method=GET>
                                             <input class='form-group' type='text' name='nomClient' placeholder='saisir votre nom'/><br>
                                             <input class='form-group' type='text' name='prenomClient' placeholder='Saisir votre prenom'/><br>
                                             <input class='form-group' type='text' name='emailClient' placeholder='Saisir votre email'/><br>
                                             <input class='form-group' type='date' name='dateAbonnementClient' placeholder='Date souhaitée d abonnement'/><br>
                                             <input class='form-group' type='text' name='login' placeholder='Saisir votre login'/><br>
                                             <input class='form-group' type='password' name='password' placeholder='Choisir un mot de passe'/><br>
+																						<input class='form-group' type='hidden' name='vue' value='compte'/><br>
+																						<input class='form-group' type='hidden' name='action'value='nouveauLogin' /><br>
                                             <input class='btn btn-secondary' type='submit' value='Accéder'/>
                                         </form>
                                     </td>
