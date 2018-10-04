@@ -126,12 +126,13 @@ Class conteneurClient
 				}
 
 				return $valide;
-			}
-			public function changementMotDePasse($unMotDePasse)
-			{
-					$LoginClient = trim($iClient->current()->getLoginClient());
-					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
-			}
+		}
+		
+		public function changementMotDePasse($unMotDePasse)
+		{
+				$LoginClient = trim($iClient->current()->getLoginClient());
+				ModiferLeMotDePasse($unMotDePasse,$LoginClient);
+		}
 		}
 
 ?>

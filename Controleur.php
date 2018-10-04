@@ -95,8 +95,20 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-//////////////////////////Clément///////////////////////
-
+			/*	if(isset($_POST['NvMDP']))
+				{
+					NouveauMotdePasse = $_POST['NvMDP'];
+					echo NouveauMotdePasse;
+					$resultat=$this->$changementMotDePasse($_POST['NvMDP']);
+				}
+				else{
+					echo  "<form  method='post'>
+					<td class='td-table justify-content-center'>
+					<input TYPE='Text' name='NvMDP' placeholder='Saisir votre nouveau mot de passe'/>
+					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
+					</form>";
+				}
+				*/
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
