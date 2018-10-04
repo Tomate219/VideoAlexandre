@@ -109,6 +109,25 @@ Class conteneurClient
 		return $trouve;
 	}
 	//public function ajoutTotal{}
-	}
 
+public function verifNU($unLogin){
+	$trouve=0;
+$iClient = $this->lesClients->getIterator();
+while ((!$trouve)&&($iClient->valid()))
+		{
+$testLogin = trim($iClient->current()->getLoginClient());
+if (strcmp($unLogin,$testLogin)==0 )
+			{
+			//maj du booléen
+			$trouve=1;
+			}
+		//SINON on passe au client suivant
+		else
+			{
+				$iClient->next();
+			}
+		}
+	return $trouve;
+}
+}
 ?>

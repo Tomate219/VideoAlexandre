@@ -107,16 +107,19 @@ class Controleur
 				$unPrénom=$_GET['prenomClient'];
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
-				$resultat=$this->maVideotheque->verifLoginNU($unLogin, $unPassword);
-						//si le client existe alors j'affiche le menu et la page visuGenre.php
-						if($resultat==1)
-						{
-							break;
-						}
-						else{
-				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
+				// echo'lancement de la recherche ';
+				// $resultat=$this->maVideotheque->verifLoginNU($unLogin);
+				// echo'le resultat de la recherche est '.$resultat;
+				// 		//si le client existe alors j'affiche le menu et la page visuGenre.php
+				// 		if($resultat==1)
+				// 		{
+				// 			echo'normalement ca break';
+				// 			break;
+				// 		}
+				// 		else{
+				// 			echo'ajout du client ';
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-		}
+								
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
@@ -125,7 +128,7 @@ class Controleur
 				//pour cela je verifie dans le conteneurClient via la gestion.
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
-				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
+				$resultat=$this->maVideotheque->verifLogin($unLogin);
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{
