@@ -111,7 +111,7 @@ Class conteneurClient
 		public function verificationDateAbonnement($unLogin)
 		{
 			$valide=0;
-			$datetime2 = new DateTime('2018-09-20'); //Date du jour
+			$datetime2 = new DateTime('2018-10-04'); //Date du jour
 			$iClient = $this->lesClients->getIterator();
 
 				$testLogin = trim($iClient->current()->getLoginClient());

@@ -348,7 +348,7 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
-// Ajout des fonctions programmé dans conteneur client:
+		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
 		public function ModifMDP($LeNvMDP)
 		{
 			$LoginClient=$this->tousLesClients->RetourneLogin();
