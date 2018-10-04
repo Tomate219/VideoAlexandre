@@ -72,6 +72,7 @@ class Controleur
 				break;
 			case "accueil":
 				session_destroy();
+				header('Location: http://localhost/PPE/');
 				break;
 			}
 		}
@@ -95,11 +96,10 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-			/*	if(isset($_POST['NvMDP']))
+				if(isset($_POST['NvMDP']))
 				{
-					NouveauMotdePasse = $_POST['NvMDP'];
-					echo NouveauMotdePasse;
-					$resultat=$this->$changementMotDePasse($_POST['NvMDP']);
+					$NouveauMotdePasse = $_POST['NvMDP'];
+					$resultat = $this->maVideotheque->ModifMDP($NouveauMotdePasse);
 				}
 				else{
 					echo  "<form  method='post'>
@@ -108,7 +108,7 @@ class Controleur
 					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
 					</form>";
 				}
-				*/
+
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :

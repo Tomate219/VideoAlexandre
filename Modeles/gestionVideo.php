@@ -173,7 +173,7 @@ Class gestionVideo
 			}
 			else
 			{
-				echo "Vous devez renouvelez votre abonnement";
+				echo "Vous devez renouveler votre abonnement";
 			}
 		}
 		return $resultat;
@@ -348,8 +348,13 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
-
-
+// Ajout des fonctions programmé dans conteneur client:
+		public function ModifMDP($LeNvMDP)
+		{
+			$LoginClient=$this->tousLesClients->RetourneLogin();
+			$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient);
+			return $resultat;
+		}
 	}
 
 ?>
