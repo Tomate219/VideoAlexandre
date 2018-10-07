@@ -18,18 +18,20 @@ class accesBD
 	public function __construct()
 		{
 		// ORDI PROFSIO
+		/*
 		$this->hote="172.16.0.50";
 		$this->port="";
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
+		*/
 
 		// ORDI DEV2
-		/*$this->hote = "localhost";
+		$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
 		$this->port = "";
-		$this->login = "Panda";
-		$this->passwd = "UgbNu74!";
-		$this->base = "videoppe3";*/
+		$this->login = "clement123!";
+		$this->passwd = "clement123!";
+		$this->base = "VideoOnline";
 		$this->connexion();
 
 		}
@@ -382,7 +384,6 @@ class accesBD
 			//Retourne le prochain identifiant
 			while($row = $requete->fetch(PDO::FETCH_NUM))
 			{
-
 				$nbEpisode = $row[0];
 			}
 			return $nbEpisode+1;
@@ -392,18 +393,25 @@ class accesBD
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-			public function ModiferLeMotDePasse($unNvMDP,$unLogin)
+			public function ModiferLeMotDePasse($unNvMDP,$unLogin,$AncienMDP)
 			{
 				$MotdePasse=$unNvMDP;
-				$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
-				if($requete->execute())
-				{
-					$Changement=1;
-					echo ("Mot de passe changé en : ");
-					echo $MotdePasse;
-					echo '<br><br><br><br><a href="javascript:history.go(-2)">Retour</a>';
-				}
+				$MDP_db = $_SESSION['password'];
+				if ($AncienMDP == $MDP_db)
+					{
+						$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+						if($requete->execute())
+							{
+								$Changement=1;
+								echo ("Mot de passe changé en : ".$MotdePasse);
+								echo '<a href="javascript:history.go(-2)">Retour</a>';
+							}
+					}
+					else{
+						echo "Ancien nouveau mot de passe erroné";
+						echo '<a href="javascript:history.go(-1)">Retour</a>';
+					}
 			}
-	}
+	}//Fin de classe
 
 ?>

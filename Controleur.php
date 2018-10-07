@@ -96,19 +96,22 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				if(isset($_POST['NvMDP']))
+				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
 				{
-					$NouveauMotdePasse = $_POST['NvMDP'];
-					$resultat = $this->maVideotheque->ModifMDP($NouveauMotdePasse);
+					$AncienMDP = $_POST['AncMDP'];
+					$NouveauMDP = $_POST['NvMDP'];
+					$TestNouveauMDp = $_POST['NvMDP2'];
+					if ($NouveauMDP == $TestNouveauMDp)
+					{
+						$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
+					}
+					else{
+					echo "Les deux mots de passe ne sont pas les mêmes";
+					}
 				}
 				else{
-					echo  "<form  method='post'>
-					<td class='td-table justify-content-center'>
-					<input TYPE='Text' name='NvMDP' placeholder='Saisir votre nouveau mot de passe'/>
-					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
-					</form>";
+					require 'Vues/modif.php';
 				}
-
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
