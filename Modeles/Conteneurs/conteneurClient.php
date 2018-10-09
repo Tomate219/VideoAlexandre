@@ -114,12 +114,9 @@ Class conteneurClient
 			$DateDuJour = $this->getDatetimeNow(); //Date du jour
 			$iClient = $this->lesClients->getIterator();
 
-				$TestFonction = $this->donneObjetClientDepuisNumero(5);
-
-
 				$testDateAbonnement = $this->donneDateAbonnementDepuisLogin($unLogin); //Recuperation de la date abonnement du client
 				$DateAbonnement = new DateTime($testDateAbonnement); //La date d'abonnement du client
-				
+
 				$interval = date_diff($DateAbonnement,$DateDuJour); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
 				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
 
@@ -139,12 +136,6 @@ Class conteneurClient
 		    $DateTimeNow->setTimezone($DateZone);
 		    return $DateTimeNow;
 		}
-		public function RetourneLogin()
-		{
-			$iClient = $this->lesClients->getIterator();
-			$Login=$_SESSION['login'];
-		}
-
 			public function donneDateAbonnementDepuisLogin($unLogin)
 				{
 				//initialisation d'un booléen (on part de l'hypothèse que le client n'existe pas)

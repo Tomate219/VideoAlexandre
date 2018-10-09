@@ -158,7 +158,6 @@ Class gestionVideo
 				$this->tousLesEmprunts->mettreUnEmpruntEnPlus($resultat[$nb][0], $resultat[$nb][1],$unClient,$leSupport);
 			    $nb++;
 			}
-
 		}
 //METHODE QUI VERIF LE LOGIN ET LE PASSWORD DE L UTILISATEUR
 	public function verifLogin($unLogin, $unPassword)
@@ -178,11 +177,6 @@ Class gestionVideo
 		}
 		return $resultat;
 	}
-
-
-
-
-
 //METHODE INSERANT UN CLIENT----------------------------------------------------------------------------------------------------------
 	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement)
 		{
@@ -351,7 +345,7 @@ Class gestionVideo
 		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
 		public function ModifMDP($LeNvMDP,$AncienMDP)
 		{
-			$LoginClient=$this->tousLesClients->RetourneLogin();
+				$LoginClient=$_SESSION['login'];
 				$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient,$AncienMDP);
 				return $resultat;
 

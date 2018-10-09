@@ -397,19 +397,20 @@ class accesBD
 			{
 				$MotdePasse=$unNvMDP;
 				$MDP_db = $_SESSION['password'];
-				if ($AncienMDP == $MDP_db)
+				if ($AncienMDP == $MDP_db && isset($unLogin))
 					{
-						$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+						$requete = $this->conn->prepare("UPDATE client SET pwd= '".$unNvMDP."' WHERE login= '".$unLogin."';");
+						// /UPDATE client SET pwd='Therriault' WHERE login='Therriault'
 						if($requete->execute())
 							{
-								$Changement=1;
-								echo ("Mot de passe changé en : ".$MotdePasse);
-								echo '<a href="javascript:history.go(-2)">Retour</a>';
+								$requete->execute();
+								echo ("Mot de passe de ".$unLogin." changé en : ".$unNvMDP);
+								echo '<a href="javascript:history.go(-2)"> Retour</a>';
 							}
 					}
 					else{
 						echo "Ancien nouveau mot de passe erroné";
-						echo '<a href="javascript:history.go(-1)">Retour</a>';
+						echo '<a href="javascript:history.go(-1)"> Retour</a>';
 					}
 			}
 	}//Fin de classe
