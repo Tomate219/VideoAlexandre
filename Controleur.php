@@ -98,7 +98,6 @@ class Controleur
 			case 'modifier' :
 				if(isset($_POST['NvMDP']))
 				{
-<<<<<<< HEAD
 					$AncienMDP = $_POST['AncMDP'];
 					$NouveauMDP = $_POST['NvMDP'];
 					$TestNouveauMDp = $_POST['NvMDP2'];
@@ -113,10 +112,6 @@ class Controleur
 					echo "Les deux mots de passe ne sont pas les mêmes";
 
 					}
-=======
-					$NouveauMotdePasse = $_POST['NvMDP'];
-					$resultat = $this->maVideotheque->ModifMDP($NouveauMotdePasse);
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 				}
 				else{
 					echo  "<form  method='post'>
