@@ -18,31 +18,20 @@ class accesBD
 	public function __construct()
 		{
 		// ORDI PROFSIO
+		/*
 		$this->hote="172.16.0.50";
 		$this->port="";
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
-<<<<<<< HEAD
-
+		*/
 
 		// ORDI DEV2
-
 		$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
 		$this->port = "";
 		$this->login = "clement123!";
 		$this->passwd = "clement123!";
 		$this->base = "VideoOnline";
-
-=======
-
-		// ORDI DEV2
-		/*$this->hote = "localhost";
-		$this->port = "";
-		$this->login = "Panda";
-		$this->passwd = "UgbNu74!";
-		$this->base = "videoppe3";*/
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 		$this->connexion();
 
 		}
@@ -108,33 +97,8 @@ class accesBD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function insertClient($unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient,$unPwdClient)
 		{
-			echo "toto".$unLoginClient;
-			$requete = $this->conn->prepare("SELECT count(*) FROM CLIENT WHERE login= '".$unLoginClient."'");
-			$requete->bindValue(1,$unLoginClient);
-			if($requete->execute())
-			{
-					$row=$requete->fetch(PDO::FETCH_NUM);
-					if ($row[0]==0)
-					{
-							//génération automatique de l'identifiant
-							$sonId = $this->donneProchainIdentifiant("client","idClient");
-echo "lancement de la requete";
-							$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
-
-							$requete->bindValue(1,$unNomClient);
-							$requete->bindValue(2,$unPrenomClient);
-							$requete->bindValue(3,$unEmailClient);
-							$requete->bindValue(4,$uneDateAbonnement);
-							$requete->bindValue(5,$unLoginClient);
-							$requete->bindValue(6,$unPwdClient);
-							$requete->execute();
-							return $sonId;
-						}
-				}
-				else
-				{
-					die("Erreur dans insertClient : ".$requete->errorCode());
-				}
+		//génération automatique de l'identifiant
+		$sonId = $this->donneProchainIdentifiant("client","idClient");
 
 		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,loginClient, pwdClient) VALUES (?,?,?,?,?,?)");
 		//définition de la requête SQL
@@ -151,8 +115,7 @@ echo "lancement de la requete";
 		}
 
 		//retour de l'identifiant du nouveau tuple
-
-
+		return $sonId;
 		}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------CREATION DE LA REQUETE D'INSERTION DES GENRES------------------------------------------------------------------------------------------------------------------------------------------------
@@ -421,7 +384,6 @@ echo "lancement de la requete";
 			//Retourne le prochain identifiant
 			while($row = $requete->fetch(PDO::FETCH_NUM))
 			{
-
 				$nbEpisode = $row[0];
 			}
 			return $nbEpisode+1;
@@ -431,56 +393,25 @@ echo "lancement de la requete";
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//-----------------------------MODIFIER LE MOT DE PASSE USER COURANT---------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		public function ModiferLeMotDePasse($MotdePasse,$unLogin,$AncienMDP)
-		{
-			$MDP_db = $_SESSION['password'];
-				if ($AncienMDP == $MDP_db)
-					{
-					$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
-					if($requete->execute())
-						{
-						$Changement=1;
-						echo ("Mot de passe changé en : ".$MotdePasse);
-						echo '<a href="javascript:history.go(-2)">Retour</a>';
-						}
-					}
-						else{
-						echo "Ancien nouveau mot de passe erroné";
-						echo '<br><a href="javascript:history.go(-1)">Retour</a>';
-					}
-		}
-	}//Fin de classe
-=======
-			private function ModiferLeMotDePasse($unNvMDP,$unLogin)
-			{
-				$Changement;
-				$LeNvMDP = $this->specialCase("UPDATE client SET pwd=".$unNvMDP." WHERE login=".$unLogin.";");
-				$requete = $this->conn->prepare($LeNvMDP);
-				if($requete->execute())
-				{
-					$Changement=1;
-				}
-				return $Changement;
-=======
-			public function ModiferLeMotDePasse($unNvMDP,$unLogin)
+			public function ModiferLeMotDePasse($unNvMDP,$unLogin,$AncienMDP)
 			{
 				$MotdePasse=$unNvMDP;
-				$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
-				if($requete->execute())
-				{
-					$Changement=1;
-					echo ("Mot de passe changé en : ");
-					echo $MotdePasse;
-					echo '<br><br><br><br><a href="javascript:history.go(-2)">Retour</a>';
-				}
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
+				$MDP_db = $_SESSION['password'];
+				if ($AncienMDP == $MDP_db)
+					{
+						$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+						if($requete->execute())
+							{
+								$Changement=1;
+								echo ("Mot de passe changé en : ".$MotdePasse);
+								echo '<a href="javascript:history.go(-2)">Retour</a>';
+							}
+					}
+					else{
+						echo "Ancien nouveau mot de passe erroné";
+						echo '<a href="javascript:history.go(-1)">Retour</a>';
+					}
 			}
-	}
+	}//Fin de classe
 
->>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 ?>

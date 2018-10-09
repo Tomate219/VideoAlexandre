@@ -173,10 +173,9 @@ Class gestionVideo
 			}
 			else
 			{
-				echo "Vous devez renouvelez votre abonnement";
+				echo "Vous devez renouveler votre abonnement";
 			}
 		}
-
 		return $resultat;
 	}
 
@@ -185,12 +184,12 @@ Class gestionVideo
 
 
 //METHODE INSERANT UN CLIENT----------------------------------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient,$unPWD ,$unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement)
+	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement)
 		{
 		//insertion du client dans la base de données
-		$sonNumero = $this->maBD->insertClient($unNomClient , $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unIdClient,$unPWD);
+		$sonNumero = $this->maBD->insertClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
 		//instanciation du client et ajout de celui-ci dans la collection
-		$this->tousLesClients->ajouteUnClient($unIdClient,$unPWD, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
+		$this->tousLesClients->ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
 		}
 	//METHODE INSERANT UN FILM----------------------------------------------------------------------------------------------------------
 	public function ajouteUnFilm($unIdFilm,$unTitreFilm, $unRealisateurFilm, $unIdGenre,$uneDureeFilm)
@@ -349,25 +348,14 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-// Ajout des fonctions programmé dans conteneur client:
->>>>>>> parent of 13232b0... Finition avant passage à l'oral
-=======
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
-		public function ModifMDP($LeNvMDP)
+		public function ModifMDP($LeNvMDP,$AncienMDP)
 		{
 			$LoginClient=$this->tousLesClients->RetourneLogin();
-			$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient);
-			return $resultat;
+				$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient,$AncienMDP);
+				return $resultat;
+			
 		}
-=======
-
-
->>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 	}
 
 ?>

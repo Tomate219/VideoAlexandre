@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once('Modeles/Metiers/client.php');
 
 Class conteneurClient
@@ -13,9 +13,8 @@ Class conteneurClient
 		}
 
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
-	public function ajouteUnClient( $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
+	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
-		$unIdClient=	Count($this->lesClients);
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
 
@@ -95,7 +94,7 @@ Class conteneurClient
 			//echo "Login : ".strcmp($unLogin,$testLogin)."<br/>".$test;
 			//echo "Password : ".strcmp($unPassword,$testPassword)."<br/>".$test2;
 			//On test avec la fonction strcmp
-			if (strcmp($unPassword,$testPassword)===0 && strcmp($unPassword,$testPassword)===0)
+			if (strcmp($unLogin,$testLogin)===0 && strcmp($unPassword,$testPassword)===0)
 				{
 				//maj du booléen
 				$trouve=1;
@@ -107,62 +106,34 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-
 		}
-		public function getDatetimeNow()
+
+		public function verificationDateAbonnement($unLogin)
 		{
-    $FuseauHoraire = new DateTimeZone('Europe/Paris');
-    //date_default_timezone_set('Brazil/East');
-
-    $DateTimeNow = new DateTime();
-    $DateTimeNow->setTimezone($FuseauHoraire);
-    return $DateTimeNow->format('Y/m/d H:i:s');
-		}
-
-public function test(){
 			$valide=0;
-			$datetime2 = new DateTime('2018-09-20'); //Date du jour
+			$datetime2 = new DateTime('2018-10-04'); //Date du jour
 			$iClient = $this->lesClients->getIterator();
-			$valide=0;
 
-			$DateTimeNow = new DateTime($this->getDatetimeNow()); //Date du jour
-			$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient());
-			$LoginClient = $iClient->current()->getLoginClient();
+				$testLogin = trim($iClient->current()->getLoginClient());
+				$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient()); //Recuperation de la date abonnement du client
+				$datetime1 = new DateTime($testDateAbonnement); //La date d'abonnement du client
 
-
-			$DateTimeAbo = new DateTime($testDateAbonnement); //La date d'abonnement du client
-			echo "date abo de $LoginClient ".$testDateAbonnement;
-
-				$DateTimeAbo->format('Y/m/d H:i:s');
-				$interval = date_diff($DateTimeAbo, $DateTimeNow); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
+				$interval = date_diff($datetime2, $datetime1); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
 				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
-				echo $NbdeJourAbonné;
-				if($NbdeJourAbonné <= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
+				if($NbdeJourAbonné >= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
 				{
 					$valide=1; //L'abonnement est encore valide
 				}
 
 				return $valide;
-<<<<<<< HEAD
 		}
-		
-		public function changementMotDePasse($unMotDePasse)
+
+		public function RetourneLogin()
 		{
+				$iClient = $this->lesClients->getIterator();
 				$LoginClient = trim($iClient->current()->getLoginClient());
-<<<<<<< HEAD
 				return $LoginClient;
-=======
-			}
-			public function changementMotDePasse($unMotDePasse)
-			{
-					$LoginClient = trim($iClient->current()->getLoginClient());
-					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
-			}
->>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
-=======
-				ModiferLeMotDePasse($unMotDePasse,$LoginClient);
 		}
->>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
-		}
+	}
 
 ?>

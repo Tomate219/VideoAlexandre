@@ -5,40 +5,36 @@ Class conteneurGenre
 	{
 	//ATTRIBUTS PRIVES-------------------------------------------------------------------------
 	private $lesGenres;
-	
+
 	//CONSTRUCTEUR-----------------------------------------------------------------------------
 	public function __construct()
 		{
 		$this->lesGenres = new arrayObject();
 		}
-	
+
 	//METHODE AJOUTANT UN genre------------------------------------------------------------------------------
 	public function ajouteUnGenre($unId‪Genre, $unLibelleGenre)
 		{
 		$unGenre = new genre($unId‪Genre, $unLibelleGenre);
 		$this->lesGenres->append($unGenre);
-			
+
 		}
-		
+
 	//METHODE RETOURNANT LE NOMBRE de genres-------------------------------------------------------------------------------
 	public function nbGenre()
 		{
 		return $this->lesGenres->count();
-		}	
-		
+		}
+
 	//METHODE RETOURNANT LA LISTE DES Genres-----------------------------------------------------------------------------------------
 	public function listeDesGenres()
 		{
 		$liste = "<div class='container h-100'>
                     <div class='row h-100 justify-content-center align-items-center'>
                         <table class='table w-50'>
-                            <thead>
-                                <td class='head-table-genre text-white'>Identifiant genre</td>
-                                <td class='head-table-genre text-white'>Genre</td>
-                            </thead>
                             <tbody>";
+		$i=0;
 		foreach ($this->lesGenres as $unGenre)
-
 		{
 					$tab[$i]=$unGenre;
 					$i++;
@@ -47,7 +43,7 @@ Class conteneurGenre
 		{
 			$liste = $liste.'<tr>';
 			$a = 0;
-			 while(($a<4) && ($j<$i))
+			 while(($a<3) && ($j<$i))
 			 {
 				 $unGenre=$tab[$j];
 				 $j++;
@@ -57,11 +53,10 @@ Class conteneurGenre
 			 $j--;
 		$liste = $liste.'</tr>';
 		}
-
 			$liste=$liste."</tbody></table></div></div>";
 		return $liste;
 		}
-		
+
 		//METHODE RETOURNANT LA LISTE DES genres DANS UNE BALISE <SELECT>------------------------------------------------------------------
 	public function lesGenresAuFormatHTML()
 		{
@@ -72,9 +67,9 @@ Class conteneurGenre
 			}
 		$liste = $liste."</SELECT>";
 		return $liste;
-		}		
+		}
 
-//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------	
+//METHODE RETOURNANT UN genre A PARTIR DE SON NUMERO--------------------------------------------
 	public function donneObjetGenreDepuisNumero($unIdGenre)
 		{
 		//initialisation d'un booléen (on part de l'hypothèse que le genre n'existe pas)
@@ -92,15 +87,15 @@ Class conteneurGenre
 				$trouve=true;
 				//sauvegarde du genre courant
 				$leBonGenre = $iGenre->current();
-				
+
 				}
 			//SINON on passe au genre suivant
 			else
 				$iGenre->next();
 			}
 		return $leBonGenre;
-		}		
-	
+		}
+
 	}
-	
-?> 
+
+?>

@@ -72,6 +72,7 @@ class Controleur
 				break;
 			case "accueil":
 				session_destroy();
+				header('Location: http://localhost/PPE/');
 				break;
 			}
 		}
@@ -95,10 +96,7 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-				if(isset($_POST['NvMDP']))
+				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
 					$NouveauMDP = $_POST['NvMDP'];
@@ -108,68 +106,16 @@ class Controleur
 						$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
 					}
 					else{
-
-					echo 'Les deux mots de passe ne sont pas les mêmes<br><a href="javascript:history.go(-1)">Retour</a>';
-
 					echo "Les deux mots de passe ne sont pas les mêmes";
-
 					}
-=======
-			/*	if(isset($_POST['NvMDP']))
-				{
-					NouveauMotdePasse = $_POST['NvMDP'];
-					echo NouveauMotdePasse;
-					$resultat=$this->$changementMotDePasse($_POST['NvMDP']);
->>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
-=======
-				if(isset($_POST['NvMDP']))
-				{
-					$NouveauMotdePasse = $_POST['NvMDP'];
-					$resultat = $this->maVideotheque->ModifMDP($NouveauMotdePasse);
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 				}
 				else{
-					echo  "<form  method='post'>
-					<td class='td-table justify-content-center'>
-					<input TYPE='Text' name='NvMDP' placeholder='Saisir votre nouveau mot de passe'/>
-					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
-					</form>";
+					require 'Vues/modif.php';
 				}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-//////////////////////////Clément///////////////////////
->>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
-
-=======
-				*/
->>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
-=======
-
->>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
 				// ici il faut pouvoir recuperer un nouveau utilisateur
-				$unLogin=$_GET['login'];
-				$unPassword=$_GET['password'];
-				$unNom=$_GET['nomClient'];
-				$unPrénom=$_GET['prenomClient'];
-				$unMail=$_GET['emailClient'];
-				$uneDate=$_GET['dateAbonnementClient'];
-				// echo'lancement de la recherche ';
-				// $resultat=$this->maVideotheque->verifLoginNU($unLogin);
-				// echo'le resultat de la recherche est '.$resultat;
-				// 		//si le client existe alors j'affiche le menu et la page visuGenre.php
-				// 		if($resultat==1)
-				// 		{
-				// 			echo'normalement ca break';
-				// 			break;
-				// 		}
-				// 		else{
-				// 			echo'ajout du client ';
-			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-
 				require 'Vues/construction.php';
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
@@ -179,7 +125,7 @@ class Controleur
 				//pour cela je verifie dans le conteneurClient via la gestion.
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
-				$resultat=$this->maVideotheque->verifLogin($unLogin);
+				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{
