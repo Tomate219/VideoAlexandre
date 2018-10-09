@@ -6,7 +6,7 @@ function chargerPage()
 {
 	$monControleur = new Controleur();
 	$monControleur->afficheEntete();
-			if(isset($_GET['login']) && isset($_GET['password']))
+			if(isset($_GET['login']) && isset($_GET['password']) && !isset($_SESSION['password']))
 			{
 				$_SESSION['login'] = $_GET['login'];
 				$_SESSION['password'] = $_GET['password'];

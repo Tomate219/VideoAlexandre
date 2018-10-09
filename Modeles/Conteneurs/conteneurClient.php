@@ -111,15 +111,21 @@ Class conteneurClient
 		public function verificationDateAbonnement($unLogin)
 		{
 			$valide=0;
-			$datetime2 = new DateTime('2018-10-04'); //Date du jour
+			$DateDuJour = new DateTime($this->getDatetimeNow()); //Date du jour
 			$iClient = $this->lesClients->getIterator();
 
-				$testLogin = trim($iClient->current()->getLoginClient());
+				$LoginClient = trim($iClient->current()->getLoginClient());
 				$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient()); //Recuperation de la date abonnement du client
 				$datetime1 = new DateTime($testDateAbonnement); //La date d'abonnement du client
+				echo $LoginClient;
 
-				$interval = date_diff($datetime2, $datetime1); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
+				$DateTimeNow= $datetime1->format('Y\-m\-d\ h:i:s');
+
+				$interval = date_diff($DateDuJour,$DateTimeNow); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
 				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
+				echo $NbdeJourAbonné;
+
+
 				if($NbdeJourAbonné >= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
 				{
 					$valide=1; //L'abonnement est encore valide
@@ -128,11 +134,13 @@ Class conteneurClient
 				return $valide;
 		}
 
-		public function RetourneLogin()
+		function getDatetimeNow()
 		{
-				$iClient = $this->lesClients->getIterator();
-				$LoginClient = trim($iClient->current()->getLoginClient());
-				return $LoginClient;
+		    $DateZone = new DateTimeZone('Brazil/East');
+
+		    $DateTimeNow = new DateTime();
+		    $DateTimeNow->setTimezone($DateZone);
+		    return $DateTimeNow->format('Y\-m\-d\ h:i:s');
 		}
 	}
 

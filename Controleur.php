@@ -72,7 +72,6 @@ class Controleur
 				break;
 			case "accueil":
 				session_destroy();
-				header('Location: http://localhost/PPE/');
 				break;
 			}
 		}
