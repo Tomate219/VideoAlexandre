@@ -107,8 +107,50 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-	}
-	//public function ajoutTotal{}
+
+		}
+		public function getDatetimeNow()
+		{
+    $FuseauHoraire = new DateTimeZone('Europe/Paris');
+    //date_default_timezone_set('Brazil/East');
+
+    $DateTimeNow = new DateTime();
+    $DateTimeNow->setTimezone($FuseauHoraire);
+    return $DateTimeNow->format('Y/m/d H:i:s');
+		}
+
+public function test(){
+			$valide=0;
+			$datetime2 = new DateTime('2018-10-04'); //Date du jour
+			$iClient = $this->lesClients->getIterator();
+			$valide=0;
+
+			$DateTimeNow = new DateTime($this->getDatetimeNow()); //Date du jour
+			$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient());
+			$LoginClient = $iClient->current()->getLoginClient();
+
+
+			$DateTimeAbo = new DateTime($testDateAbonnement); //La date d'abonnement du client
+			echo "date abo de $LoginClient ".$testDateAbonnement;
+
+				$DateTimeAbo->format('Y/m/d H:i:s');
+				$interval = date_diff($DateTimeAbo, $DateTimeNow); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
+				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
+				echo $NbdeJourAbonné;
+				if($NbdeJourAbonné <= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
+				{
+					$valide=1; //L'abonnement est encore valide
+				}
+
+				return $valide;
+		}
+
+		public function RetourneLogin()
+		{
+				$iClient = $this->lesClients->getIterator();
+				$LoginClient = trim($iClient->current()->getLoginClient());
+				return $LoginClient;
+		}
 	}
 
 ?>

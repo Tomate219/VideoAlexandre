@@ -35,6 +35,7 @@ Class conteneurGenre
                             <tbody>";
 		$i=0;
 		foreach ($this->lesGenres as $unGenre)
+
 		{
 					$tab[$i]=$unGenre;
 					$i++;
@@ -53,6 +54,7 @@ Class conteneurGenre
 			 $j--;
 		$liste = $liste.'</tr>';
 		}
+
 			$liste=$liste."</tbody></table></div></div>";
 		return $liste;
 		}

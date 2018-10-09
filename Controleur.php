@@ -95,8 +95,23 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				// ici il faut pouvoir modifier le mot de passe de l'utilisateur
-				require 'Vues/construction.php';
+
+				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
+				{
+					$AncienMDP = $_POST['AncMDP'];
+					$NouveauMDP = $_POST['NvMDP'];
+					$TestNouveauMDp = $_POST['NvMDP2'];
+					if ($NouveauMDP == $TestNouveauMDp)
+					{
+						$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
+					}
+					else{
+					echo 'Les deux mots de passe ne sont pas les mêmes<br><a href="javascript:history.go(-1)">Retour</a>';
+					}
+				}
+				else{
+					require 'Vues/modif.php';
+				}
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
@@ -107,8 +122,19 @@ class Controleur
 				$unPrénom=$_GET['prenomClient'];
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
-				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
+				// echo'lancement de la recherche ';
+				// $resultat=$this->maVideotheque->verifLoginNU($unLogin);
+				// echo'le resultat de la recherche est '.$resultat;
+				// 		//si le client existe alors j'affiche le menu et la page visuGenre.php
+				// 		if($resultat==1)
+				// 		{
+				// 			echo'normalement ca break';
+				// 			break;
+				// 		}
+				// 		else{
+				// 			echo'ajout du client ';
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
+
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
@@ -117,7 +143,7 @@ class Controleur
 				//pour cela je verifie dans le conteneurClient via la gestion.
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
-				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
+				$resultat=$this->maVideotheque->verifLogin($unLogin);
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{

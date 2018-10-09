@@ -24,12 +24,15 @@ class accesBD
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
 
+
 		// ORDI DEV2
-		/*$this->hote = "localhost";
+		/*
+		$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
 		$this->port = "";
-		$this->login = "Panda";
-		$this->passwd = "UgbNu74!";
-		$this->base = "videoppe3";*/
+		$this->login = "clement123!";
+		$this->passwd = "clement123!";
+		$this->base = "VideoOnline";
+		*/
 		$this->connexion();
 
 		}
@@ -95,8 +98,33 @@ class accesBD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function insertClient($unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient,$unPwdClient)
 		{
-		//génération automatique de l'identifiant
-		$sonId = $this->donneProchainIdentifiant("client","idClient");
+			echo "toto".$unLoginClient;
+			$requete = $this->conn->prepare("SELECT count(*) FROM CLIENT WHERE login= '".$unLoginClient."'");
+			$requete->bindValue(1,$unLoginClient);
+			if($requete->execute())
+			{
+					$row=$requete->fetch(PDO::FETCH_NUM);
+					if ($row[0]==0)
+					{
+							//génération automatique de l'identifiant
+							$sonId = $this->donneProchainIdentifiant("client","idClient");
+echo "lancement de la requete";
+							$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
+
+							$requete->bindValue(1,$unNomClient);
+							$requete->bindValue(2,$unPrenomClient);
+							$requete->bindValue(3,$unEmailClient);
+							$requete->bindValue(4,$uneDateAbonnement);
+							$requete->bindValue(5,$unLoginClient);
+							$requete->bindValue(6,$unPwdClient);
+							$requete->execute();
+							return $sonId;
+						}
+				}
+				else
+				{
+					die("Erreur dans insertClient : ".$requete->errorCode());
+				}
 
 		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
 		//définition de la requête SQL
@@ -113,7 +141,8 @@ class accesBD
 		}
 
 		//retour de l'identifiant du nouveau tuple
-		return $sonId;
+
+
 		}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------CREATION DE LA REQUETE D'INSERTION DES GENRES------------------------------------------------------------------------------------------------------------------------------------------------
@@ -392,6 +421,26 @@ class accesBD
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-	}
-
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//-----------------------------MODIFIER LE MOT DE PASSE USER COURANT---------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		public function ModiferLeMotDePasse($MotdePasse,$unLogin,$AncienMDP)
+		{
+			$MDP_db = $_SESSION['password'];
+				if ($AncienMDP == $MDP_db)
+					{
+					$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+					if($requete->execute())
+						{
+						$Changement=1;
+						echo ("Mot de passe changé en : ".$MotdePasse);
+						echo '<a href="javascript:history.go(-2)">Retour</a>';
+						}
+					}
+						else{
+						echo "Ancien nouveau mot de passe erroné";
+						echo '<br><a href="javascript:history.go(-1)">Retour</a>';
+					}
+		}
+	}//Fin de classe
 ?>
