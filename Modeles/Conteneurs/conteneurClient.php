@@ -13,8 +13,9 @@ Class conteneurClient
 		}
 
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
+	public function ajouteUnClient( $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
+		$unIdClient=	Count($this->lesClients);
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
 
@@ -94,7 +95,7 @@ Class conteneurClient
 			//echo "Login : ".strcmp($unLogin,$testLogin)."<br/>".$test;
 			//echo "Password : ".strcmp($unPassword,$testPassword)."<br/>".$test2;
 			//On test avec la fonction strcmp
-			if (strcmp($unLogin,$testLogin)===0 && strcmp($unPassword,$testPassword)===0)
+			if (strcmp($unPassword,$testPassword)===0 && strcmp($unPassword,$testPassword)===0)
 				{
 				//maj du booléen
 				$trouve=1;
@@ -106,10 +107,30 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-		}
+	}
+	//public function ajoutTotal{}
 
-		public function verificationDateAbonnement($unLogin)
+public function verifNU($unLogin){
+	$trouve=0;
+$iClient = $this->lesClients->getIterator();
+while ((!$trouve)&&($iClient->valid()))
 		{
+  $testLogin = trim($iClient->current()->getLoginClient());
+if (strcmp($unLogin,$testLogin)==0 )
+			{
+			//maj du booléen
+			$trouve=1;
+			}
+		//SINON on passe au client suivant
+		else
+			{
+				$iClient->next();
+			}
+		}
+	return $trouve;
+}
+  public function verificationDateAbonnement($unLogin){
+
 			$valide=0;
 			$datetime2 = new DateTime('2018-10-04'); //Date du jour
 			$iClient = $this->lesClients->getIterator();
@@ -134,6 +155,7 @@ Class conteneurClient
 				$LoginClient = trim($iClient->current()->getLoginClient());
 				return $LoginClient;
 		}
-	}
+	
+}
 
 ?>
