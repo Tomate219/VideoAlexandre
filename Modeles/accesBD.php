@@ -18,16 +18,15 @@ class accesBD
 	public function __construct()
 		{
 		// ORDI PROFSIO
-		/*
 		$this->hote="172.16.0.50";
 		$this->port="";
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
-		*/
 
 
 		// ORDI DEV2
+<<<<<<< HEAD
 
 		$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
 		$this->port = "";
@@ -35,6 +34,13 @@ class accesBD
 		$this->passwd = "clement123!";
 		$this->base = "VideoOnline";
 
+=======
+		/*$this->hote = "localhost";
+		$this->port = "";
+		$this->login = "Panda";
+		$this->passwd = "UgbNu74!";
+		$this->base = "videoppe3";*/
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 		$this->connexion();
 
 		}
@@ -413,6 +419,7 @@ echo "lancement de la requete";
 			//Retourne le prochain identifiant
 			while($row = $requete->fetch(PDO::FETCH_NUM))
 			{
+
 				$nbEpisode = $row[0];
 			}
 			return $nbEpisode+1;
@@ -422,6 +429,7 @@ echo "lancement de la requete";
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
+<<<<<<< HEAD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-----------------------------MODIFIER LE MOT DE PASSE USER COURANT---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -444,4 +452,20 @@ echo "lancement de la requete";
 					}
 		}
 	}//Fin de classe
+=======
+			public function ModiferLeMotDePasse($unNvMDP,$unLogin)
+			{
+				$MotdePasse=$unNvMDP;
+				$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+				if($requete->execute())
+				{
+					$Changement=1;
+					echo ("Mot de passe changé en : ");
+					echo $MotdePasse;
+					echo '<br><br><br><br><a href="javascript:history.go(-2)">Retour</a>';
+				}
+			}
+	}
+
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 ?>
