@@ -72,7 +72,6 @@ class Controleur
 				break;
 			case "accueil":
 				session_destroy();
-				header('Location: http://localhost/PPE/');
 				break;
 			}
 		}
@@ -97,6 +96,7 @@ class Controleur
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if(isset($_POST['NvMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
@@ -113,6 +113,13 @@ class Controleur
 					echo "Les deux mots de passe ne sont pas les mêmes";
 
 					}
+=======
+			/*	if(isset($_POST['NvMDP']))
+				{
+					NouveauMotdePasse = $_POST['NvMDP'];
+					echo NouveauMotdePasse;
+					$resultat=$this->$changementMotDePasse($_POST['NvMDP']);
+>>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 				}
 				else{
 					echo  "<form  method='post'>
@@ -121,10 +128,14 @@ class Controleur
 					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
 					</form>";
 				}
+<<<<<<< HEAD
 =======
 //////////////////////////Clément///////////////////////
 >>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
 
+=======
+				*/
+>>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :

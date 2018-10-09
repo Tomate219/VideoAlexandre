@@ -145,11 +145,11 @@ public function test(){
 				return $valide;
 <<<<<<< HEAD
 		}
-
-		public function RetourneLogin()
+		
+		public function changementMotDePasse($unMotDePasse)
 		{
-				$iClient = $this->lesClients->getIterator();
 				$LoginClient = trim($iClient->current()->getLoginClient());
+<<<<<<< HEAD
 				return $LoginClient;
 =======
 			}
@@ -159,7 +159,10 @@ public function test(){
 					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
 			}
 >>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
+=======
+				ModiferLeMotDePasse($unMotDePasse,$LoginClient);
 		}
-	}
+>>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
+		}
 
 ?>

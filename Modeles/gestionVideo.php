@@ -173,7 +173,7 @@ Class gestionVideo
 			}
 			else
 			{
-				echo "Vous devez renouveler votre abonnement";
+				echo "Vous devez renouvelez votre abonnement";
 			}
 		}
 
@@ -349,6 +349,7 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
+<<<<<<< HEAD
 		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
 		public function ModifMDP($LeNvMDP)
 		{
@@ -356,6 +357,10 @@ Class gestionVideo
 			$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient);
 			return $resultat;
 		}
+=======
+
+
+>>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 	}
 
 ?>

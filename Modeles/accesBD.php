@@ -421,6 +421,7 @@ echo "lancement de la requete";
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
+<<<<<<< HEAD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-----------------------------MODIFIER LE MOT DE PASSE USER COURANT---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -443,4 +444,19 @@ echo "lancement de la requete";
 					}
 		}
 	}//Fin de classe
+=======
+			private function ModiferLeMotDePasse($unNvMDP,$unLogin)
+			{
+				$Changement;
+				$LeNvMDP = $this->specialCase("UPDATE client SET pwd=".$unNvMDP." WHERE login=".$unLogin.";");
+				$requete = $this->conn->prepare($LeNvMDP);
+				if($requete->execute())
+				{
+					$Changement=1;
+				}
+				return $Changement;
+			}
+	}
+
+>>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
 ?>
