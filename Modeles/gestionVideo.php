@@ -350,7 +350,11 @@ Class gestionVideo
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
+=======
+// Ajout des fonctions programmé dans conteneur client:
+>>>>>>> parent of 13232b0... Finition avant passage à l'oral
 		public function ModifMDP($LeNvMDP)
 		{
 			$LoginClient=$this->tousLesClients->RetourneLogin();

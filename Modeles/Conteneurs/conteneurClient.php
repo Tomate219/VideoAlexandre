@@ -121,7 +121,7 @@ Class conteneurClient
 
 public function test(){
 			$valide=0;
-			$datetime2 = new DateTime('2018-10-04'); //Date du jour
+			$datetime2 = new DateTime('2018-09-20'); //Date du jour
 			$iClient = $this->lesClients->getIterator();
 			$valide=0;
 
