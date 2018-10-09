@@ -349,8 +349,14 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
-
-
+		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
+		public function ModifMDP($LeNvMDP,$AncienMDP)
+		{
+			$LoginClient=$this->tousLesClients->RetourneLogin();
+				$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient,$AncienMDP);
+				return $resultat;
+			
+		}
 	}
 
 ?>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class accesBD
 	{
@@ -18,21 +18,23 @@ class accesBD
 	public function __construct()
 		{
 		// ORDI PROFSIO
+		/*
 		$this->hote="172.16.0.50";
 		$this->port="";
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
+		*/
 
 
 		// ORDI DEV2
-		/*
+
 		$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
 		$this->port = "";
 		$this->login = "clement123!";
 		$this->passwd = "clement123!";
 		$this->base = "VideoOnline";
-		*/
+
 		$this->connexion();
 
 		}
@@ -126,7 +128,7 @@ echo "lancement de la requete";
 					die("Erreur dans insertClient : ".$requete->errorCode());
 				}
 
-		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
+		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,loginClient, pwdClient) VALUES (?,?,?,?,?,?)");
 		//définition de la requête SQL
 		$requete->bindValue(1,$unNomClient);
 		$requete->bindValue(2,$unPrenomClient);
@@ -411,7 +413,6 @@ echo "lancement de la requete";
 			//Retourne le prochain identifiant
 			while($row = $requete->fetch(PDO::FETCH_NUM))
 			{
-
 				$nbEpisode = $row[0];
 			}
 			return $nbEpisode+1;

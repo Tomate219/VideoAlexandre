@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once('Modeles/Metiers/genre.php');
 
 Class conteneurGenre

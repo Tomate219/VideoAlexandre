@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //include du fichier GESTION pour les objets (Modeles)
 include 'Modeles/gestionVideo.php';
 
@@ -55,7 +55,6 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function affichePage($action,$vue)
 		{
-
 		//SELON la vue demandée
 		switch ($vue)
 			{
@@ -73,6 +72,7 @@ class Controleur
 				break;
 			case "accueil":
 				session_destroy();
+				header('Location: http://localhost/PPE/');
 				break;
 			}
 		}
@@ -83,6 +83,7 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	private function vueCompte($action)
 		{
+
 		//SELON l'action demandée
 		switch ($action)
 			{
@@ -95,7 +96,6 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-
 				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
@@ -106,7 +106,11 @@ class Controleur
 						$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
 					}
 					else{
+
 					echo 'Les deux mots de passe ne sont pas les mêmes<br><a href="javascript:history.go(-1)">Retour</a>';
+
+					echo "Les deux mots de passe ne sont pas les mêmes";
+
 					}
 				}
 				else{
@@ -135,6 +139,7 @@ class Controleur
 				// 			echo'ajout du client ';
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
 
+				require 'Vues/construction.php';
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
