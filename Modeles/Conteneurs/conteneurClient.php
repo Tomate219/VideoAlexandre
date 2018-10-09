@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('Modeles/Metiers/client.php');
 
 Class conteneurClient
@@ -13,8 +13,9 @@ Class conteneurClient
 		}
 
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
+	public function ajouteUnClient( $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
+		$unIdClient=	Count($this->lesClients);
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
 
@@ -94,7 +95,7 @@ Class conteneurClient
 			//echo "Login : ".strcmp($unLogin,$testLogin)."<br/>".$test;
 			//echo "Password : ".strcmp($unPassword,$testPassword)."<br/>".$test2;
 			//On test avec la fonction strcmp
-			if (strcmp($unLogin,$testLogin)===0 && strcmp($unPassword,$testPassword)===0)
+			if (strcmp($unPassword,$testPassword)===0 && strcmp($unPassword,$testPassword)===0)
 				{
 				//maj du booléen
 				$trouve=1;
@@ -106,34 +107,8 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-		}
-
-		public function verificationDateAbonnement($unLogin)
-		{
-			$valide=0;
-			$datetime2 = new DateTime('2018-10-04'); //Date du jour
-			$iClient = $this->lesClients->getIterator();
-
-				$testLogin = trim($iClient->current()->getLoginClient());
-				$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient()); //Recuperation de la date abonnement du client
-				$datetime1 = new DateTime($testDateAbonnement); //La date d'abonnement du client
-
-				$interval = date_diff($datetime2, $datetime1); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
-				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
-				if($NbdeJourAbonné >= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
-				{
-					$valide=1; //L'abonnement est encore valide
-				}
-
-				return $valide;
-		}
-
-		public function RetourneLogin()
-		{
-				$iClient = $this->lesClients->getIterator();
-				$LoginClient = trim($iClient->current()->getLoginClient());
-				return $LoginClient;
-		}
+	}
+	//public function ajoutTotal{}
 	}
 
 ?>
