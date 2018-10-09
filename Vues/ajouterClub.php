@@ -12,9 +12,9 @@
 				<INPUT type = 'text' name = 'emailClub'/>
 				<INPUT type = 'text' name = 'dateCreation'/>
 				<INPUT type = 'text' name = 'resumeActiviteClub'/>
-			</td>		
+			</td>
 		</TR>
-		
+
 		<TR>
 			<TD colspan = '2' align = 'right'>
 				<INPUT type = 'submit' value = 'Valider' name = 'choix'/>
@@ -23,4 +23,3 @@
 	</TABLE>
 </FORM>
 </div>
-		

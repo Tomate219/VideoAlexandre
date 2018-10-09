@@ -97,38 +97,25 @@ class accesBD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function insertClient($unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient,$unPwdClient)
 		{
-			echo "toto".$unLoginClient;
-			$requete = $this->conn->prepare("SELECT count(*) FROM CLIENT WHERE login= '".$unLoginClient."'");
-			$requete->bindValue(1,$unLoginClient);
-			if($requete->execute())
-			{
-					$row=$requete->fetch(PDO::FETCH_NUM);
-					if ($row[0]==0)
-					{
-							//génération automatique de l'identifiant
-							$sonId = $this->donneProchainIdentifiant("client","idClient");
-echo "lancement de la requete";
-							$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
+		//génération automatique de l'identifiant
+		$sonId = $this->donneProchainIdentifiant("client","idClient");
 
-							$requete->bindValue(1,$unNomClient);
-							$requete->bindValue(2,$unPrenomClient);
-							$requete->bindValue(3,$unEmailClient);
-							$requete->bindValue(4,$uneDateAbonnement);
-							$requete->bindValue(5,$unLoginClient);
-							$requete->bindValue(6,$unPwdClient);
-							$requete->execute();
-							return $sonId;
-						}
-				}
-				else
-				{
-					die("Erreur dans insertClient : ".$requete->errorCode());
-				}
-
+		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,loginClient, pwdClient) VALUES (?,?,?,?,?,?)");
+		//définition de la requête SQL
+		$requete->bindValue(1,$unNomClient);
+		$requete->bindValue(2,$unPrenomClient);
+		$requete->bindValue(3,$unEmailClient);
+		$requete->bindValue(4,$uneDateAbonnement);
+		$requete->bindValue(5,$unLoginClient);
+		$requete->bindValue(6,$unPwdClient);
+		//exécution de la requête SQL
+		if(!$requete->execute())
+		{
+			die("Erreur dans insertClient : ".$requete->errorCode());
+		}
 
 		//retour de l'identifiant du nouveau tuple
-
-
+		return $sonId;
 		}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------CREATION DE LA REQUETE D'INSERTION DES GENRES------------------------------------------------------------------------------------------------------------------------------------------------
@@ -406,7 +393,6 @@ echo "lancement de la requete";
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-
 			public function ModiferLeMotDePasse($unNvMDP,$unLogin,$AncienMDP)
 			{
 				$MotdePasse=$unNvMDP;
@@ -427,6 +413,5 @@ echo "lancement de la requete";
 					}
 			}
 	}//Fin de classe
-
 
 ?>

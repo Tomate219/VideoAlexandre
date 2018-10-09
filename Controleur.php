@@ -55,7 +55,6 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function affichePage($action,$vue)
 		{
-
 		//SELON la vue demandée
 		switch ($vue)
 			{
@@ -83,6 +82,7 @@ class Controleur
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	private function vueCompte($action)
 		{
+
 		//SELON l'action demandée
 		switch ($action)
 			{
@@ -95,7 +95,6 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-
 				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
@@ -112,30 +111,11 @@ class Controleur
 				else{
 					require 'Vues/modif.php';
 				}
-
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
 				// ici il faut pouvoir recuperer un nouveau utilisateur
-				$unLogin=$_GET['login'];
-				$unPassword=$_GET['password'];
-				$unNom=$_GET['nomClient'];
-				$unPrénom=$_GET['prenomClient'];
-				$unMail=$_GET['emailClient'];
-				$uneDate=$_GET['dateAbonnementClient'];
-				// echo'lancement de la recherche ';
-				// $resultat=$this->maVideotheque->verifLoginNU($unLogin);
-				// echo'le resultat de la recherche est '.$resultat;
-				// 		//si le client existe alors j'affiche le menu et la page visuGenre.php
-				// 		if($resultat==1)
-				// 		{
-				// 			echo'normalement ca break';
-				// 			break;
-				// 		}
-				// 		else{
-				// 			echo'ajout du client ';
-			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-
+				require 'Vues/construction.php';
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
@@ -144,7 +124,7 @@ class Controleur
 				//pour cela je verifie dans le conteneurClient via la gestion.
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
-				$resultat=$this->maVideotheque->verifLogin($unLogin,$unPassword);
+				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{
