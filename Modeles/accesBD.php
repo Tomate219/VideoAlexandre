@@ -23,6 +23,7 @@ class accesBD
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
+<<<<<<< HEAD
 
 
 		// ORDI DEV2
@@ -33,6 +34,15 @@ class accesBD
 		$this->passwd = "clement123!";
 		$this->base = "VideoOnline";
 
+=======
+
+		// ORDI DEV2
+		/*$this->hote = "localhost";
+		$this->port = "";
+		$this->login = "Panda";
+		$this->passwd = "UgbNu74!";
+		$this->base = "videoppe3";*/
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 		$this->connexion();
 
 		}
@@ -422,6 +432,7 @@ echo "lancement de la requete";
 		}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-----------------------------MODIFIER LE MOT DE PASSE USER COURANT---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -455,6 +466,19 @@ echo "lancement de la requete";
 					$Changement=1;
 				}
 				return $Changement;
+=======
+			public function ModiferLeMotDePasse($unNvMDP,$unLogin)
+			{
+				$MotdePasse=$unNvMDP;
+				$requete = $this->conn->prepare("UPDATE client SET pwd='".$unNvMDP."' WHERE login='".$unLogin."';");
+				if($requete->execute())
+				{
+					$Changement=1;
+					echo ("Mot de passe changé en : ");
+					echo $MotdePasse;
+					echo '<br><br><br><br><a href="javascript:history.go(-2)">Retour</a>';
+				}
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 			}
 	}
 

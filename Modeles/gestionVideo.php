@@ -352,9 +352,12 @@ Class gestionVideo
 <<<<<<< HEAD
 <<<<<<< HEAD
 		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
+<<<<<<< HEAD
 =======
 // Ajout des fonctions programmé dans conteneur client:
 >>>>>>> parent of 13232b0... Finition avant passage à l'oral
+=======
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 		public function ModifMDP($LeNvMDP)
 		{
 			$LoginClient=$this->tousLesClients->RetourneLogin();

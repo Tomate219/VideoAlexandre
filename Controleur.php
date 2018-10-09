@@ -97,6 +97,7 @@ class Controleur
 			case 'modifier' :
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if(isset($_POST['NvMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
@@ -120,6 +121,12 @@ class Controleur
 					echo NouveauMotdePasse;
 					$resultat=$this->$changementMotDePasse($_POST['NvMDP']);
 >>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
+=======
+				if(isset($_POST['NvMDP']))
+				{
+					$NouveauMotdePasse = $_POST['NvMDP'];
+					$resultat = $this->maVideotheque->ModifMDP($NouveauMotdePasse);
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 				}
 				else{
 					echo  "<form  method='post'>
@@ -129,6 +136,7 @@ class Controleur
 					</form>";
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //////////////////////////Clément///////////////////////
 >>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
@@ -136,6 +144,9 @@ class Controleur
 =======
 				*/
 >>>>>>> parent of c9c5ae4... Version stable (ModifMDP/Fonction Déconnection)
+=======
+
+>>>>>>> parent of 775de33... Approfondissement du changement de mot de passe
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
