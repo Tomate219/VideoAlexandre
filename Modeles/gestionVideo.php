@@ -169,11 +169,11 @@ Class gestionVideo
 			$testDateAbonnement=$this->tousLesClients->verificationDateAbonnement($unLogin);
 			if($testDateAbonnement == 1)
 			{
-				echo "Vous êtes abonné à notre vidéotheque";
+				echo '<pi style="color:#00FF00;">Vous êtes abonné à notre bibliothèque</pi>';
 			}
 			else
 			{
-				echo "Vous devez renouveler votre abonnement";
+				echo '<pi style="color:#FF0000;">Vous devez renouveler votre abonnement</pi>';
 			}
 		}
 		return $resultat;
@@ -354,7 +354,7 @@ Class gestionVideo
 			$LoginClient=$this->tousLesClients->RetourneLogin();
 				$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient,$AncienMDP);
 				return $resultat;
-			
+
 		}
 	}
 

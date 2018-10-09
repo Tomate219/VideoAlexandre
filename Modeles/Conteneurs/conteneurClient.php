@@ -110,23 +110,20 @@ Class conteneurClient
 
 		public function verificationDateAbonnement($unLogin)
 		{
-			$valide=0;
-			$DateDuJour = new DateTime($this->getDatetimeNow()); //Date du jour
+			$valide=false;
+			$DateDuJour = $this->getDatetimeNow(); //Date du jour
 			$iClient = $this->lesClients->getIterator();
 
-				$LoginClient = trim($iClient->current()->getLoginClient());
-				$testDateAbonnement = trim($iClient->current()->getDateAbonnementClient()); //Recuperation de la date abonnement du client
-				$datetime1 = new DateTime($testDateAbonnement); //La date d'abonnement du client
-				echo $LoginClient;
+				$TestFonction = $this->donneObjetClientDepuisNumero(5);
 
-				$DateTimeNow= $datetime1->format('Y\-m\-d\ h:i:s');
 
-				$interval = date_diff($DateDuJour,$DateTimeNow); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
+				$testDateAbonnement = $this->donneDateAbonnementDepuisLogin($unLogin); //Recuperation de la date abonnement du client
+				$DateAbonnement = new DateTime($testDateAbonnement); //La date d'abonnement du client
+				
+				$interval = date_diff($DateAbonnement,$DateDuJour); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
 				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
-				echo $NbdeJourAbonné;
 
-
-				if($NbdeJourAbonné >= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
+				if($NbdeJourAbonné <= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
 				{
 					$valide=1; //L'abonnement est encore valide
 				}
@@ -140,8 +137,39 @@ Class conteneurClient
 
 		    $DateTimeNow = new DateTime();
 		    $DateTimeNow->setTimezone($DateZone);
-		    return $DateTimeNow->format('Y\-m\-d\ h:i:s');
+		    return $DateTimeNow;
 		}
+		public function RetourneLogin()
+		{
+			$iClient = $this->lesClients->getIterator();
+			$Login=$_SESSION['login'];
+		}
+
+			public function donneDateAbonnementDepuisLogin($unLogin)
+				{
+				//initialisation d'un booléen (on part de l'hypothèse que le client n'existe pas)
+				$trouve=false;
+				$testDate=null;
+
+				//création d'un itérateur sur la collection lesClients
+				$iClient = $this->lesClients->getIterator();
+				//TQ on a pas trouvé le client et que l'on est pas arrivé au bout de la collection
+				while ((!$trouve)&&($iClient->valid()))
+					{
+					//SI le numéro du client courant correspond au numéro passé en paramètre
+					if (trim($iClient->current()->getLoginClient())==$unLogin)
+						{
+						//maj du booléen
+						$trouve=true;
+						//sauvegarde du client courant
+						$testDate = trim($iClient->current()->getDateAbonnementClient());
+						}
+					//SINON on passe au client suivant
+					else
+						$iClient->next();
+					}
+				return $testDate;
+				}
 	}
 
 ?>

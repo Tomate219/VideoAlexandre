@@ -1,7 +1,6 @@
 ﻿<?php
 session_start();
 include 'Controleur.php';
-
 function chargerPage()
 {
 	$monControleur = new Controleur();
