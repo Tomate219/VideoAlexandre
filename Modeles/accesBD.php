@@ -403,7 +403,6 @@ class accesBD
 						// /UPDATE client SET pwd='Therriault' WHERE login='Therriault'
 						if($requete->execute())
 							{
-								$requete->execute();
 								echo ("Mot de passe de ".$unLogin." changé en : ".$unNvMDP);
 								echo '<a href="javascript:history.go(-2)"> Retour</a>';
 							}
@@ -411,6 +410,17 @@ class accesBD
 					else{
 						echo "Ancien nouveau mot de passe erroné";
 						echo '<a href="javascript:history.go(-1)"> Retour</a>';
+					}
+			}
+			public function ModifDateAbonnement($unLogin)
+			{
+				$DateDuJour=new DateTime(); //this returns the current date time
+				$result = $DateDuJour->format('Y-m-d');
+				echo $result;
+				$requete = $this->conn->prepare("UPDATE client SET dateAbonnementClient='".$result."' WHERE login= '".$unLogin."';");
+				if($requete->execute())
+					{
+						echo '<a href="javascript:history.go(-2)"> Retour</a>';
 					}
 			}
 	}//Fin de classe

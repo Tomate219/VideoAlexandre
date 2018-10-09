@@ -350,6 +350,11 @@ Class gestionVideo
 				return $resultat;
 
 		}
+		public function MajDateAbonnement()
+		{
+			$LoginClient=$_SESSION['login'];
+			$vretour = $this->maBD->ModifDateAbonnement($LoginClient);
+		}
 	}
 
 ?>

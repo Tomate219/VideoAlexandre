@@ -95,17 +95,23 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']))
+				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']) || !empty($_POST['MAjDate']))
 				{
-					$AncienMDP = $_POST['AncMDP'];
-					$NouveauMDP = $_POST['NvMDP'];
-					$TestNouveauMDp = $_POST['NvMDP2'];
-					if ($NouveauMDP == $TestNouveauMDp)
+					if (isset($_POST['MAjDate']))
 					{
-						$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
-					}
-					else{
-					echo '<pi>Les deux mots de passe ne sont pas les mêmes</pi>';
+							$resultat = $this->maVideotheque->MajDateAbonnement();
+					}else
+						{
+						$AncienMDP = $_POST['AncMDP'];
+						$NouveauMDP = $_POST['NvMDP'];
+						$TestNouveauMDp = $_POST['NvMDP2'];
+						if ($NouveauMDP == $TestNouveauMDp)
+						{
+							$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
+						}
+						else{
+						echo '<pi>Les deux mots de passe ne sont pas les mêmes</pi>';
+						}
 					}
 				}
 				else{
