@@ -96,6 +96,7 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
+<<<<<<< HEAD
 				if(isset($_POST['NvMDP']))
 				{
 					$AncienMDP = $_POST['AncMDP'];
@@ -120,6 +121,9 @@ class Controleur
 					<input class='btn btn-secondary mx-auto' type='submit' value='Validé'/>
 					</form>";
 				}
+=======
+//////////////////////////Clément///////////////////////
+>>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
 
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------

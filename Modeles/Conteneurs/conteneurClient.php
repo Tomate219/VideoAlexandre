@@ -143,6 +143,7 @@ public function test(){
 				}
 
 				return $valide;
+<<<<<<< HEAD
 		}
 
 		public function RetourneLogin()
@@ -150,6 +151,14 @@ public function test(){
 				$iClient = $this->lesClients->getIterator();
 				$LoginClient = trim($iClient->current()->getLoginClient());
 				return $LoginClient;
+=======
+			}
+			public function changementMotDePasse($unMotDePasse)
+			{
+					$LoginClient = trim($iClient->current()->getLoginClient());
+					ModiferLeMotDePasse($unMotDePasse,$LoginClient);
+			}
+>>>>>>> parent of 8ff1047... Début "Changementmotdepasse"
 		}
 	}
 
