@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('Modeles/Metiers/client.php');
 
 Class conteneurClient
@@ -13,8 +13,9 @@ Class conteneurClient
 		}
 
 	//METHODE AJOUTANT UN Client------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
+	public function ajouteUnClient( $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement, $unLoginClient, $unPwdClient)
 		{
+		$unIdClient=	Count($this->lesClients);
 		$unClient = new client($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient, $unPwdClient);
 		$this->lesClients->append($unClient);
 
@@ -94,7 +95,7 @@ Class conteneurClient
 			//echo "Login : ".strcmp($unLogin,$testLogin)."<br/>".$test;
 			//echo "Password : ".strcmp($unPassword,$testPassword)."<br/>".$test2;
 			//On test avec la fonction strcmp
-			if (strcmp($unLogin,$testLogin)===0 && strcmp($unPassword,$testPassword)===0)
+			if (strcmp($unPassword,$testPassword)===0 && strcmp($unPassword,$testPassword)===0)
 				{
 				//maj du booléen
 				$trouve=1;
@@ -106,6 +107,7 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
+
 		}
 
 		public function verificationDateAbonnement($unLogin)
@@ -127,6 +129,7 @@ Class conteneurClient
 
 				return $valide;
 		}
+
 
 		function getDatetimeNow()
 		{
