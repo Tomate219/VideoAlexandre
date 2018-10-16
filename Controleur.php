@@ -129,7 +129,7 @@ class Controleur
 				$unPrénom=$_GET['prenomClient'];
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
-				//echo"Envoie données.'$unLogin'.'$unPassword'.'$unNom'.'$unPrénom'.'$unMail'.";
+
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
