@@ -131,6 +131,7 @@ class Controleur
 				$uneDate=$_GET['dateAbonnementClient'];
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
@@ -138,6 +139,8 @@ class Controleur
 				$unPassword=$_SESSION['password'];
 				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
 =======
+=======
+>>>>>>> parent of 5c9f0d6... Problème connection réglé
 								
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
@@ -148,6 +151,9 @@ class Controleur
 				$unLogin=$_GET['login'];
 				$unPassword=$_GET['password'];
 				$resultat=$this->maVideotheque->verifLogin($unLogin);
+<<<<<<< HEAD
+>>>>>>> parent of 5c9f0d6... Problème connection réglé
+=======
 >>>>>>> parent of 5c9f0d6... Problème connection réglé
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
