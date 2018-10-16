@@ -95,8 +95,30 @@ class Controleur
 
 			//CAS enregistrement d'une modification sur le compte------------------------------------------------------------------------------
 			case 'modifier' :
-				// ici il faut pouvoir modifier le mot de passe de l'utilisateur
-				require 'Vues/construction.php';
+
+				if(isset($_POST['NvMDP']) && isset($_POST['NvMDP2']) && !empty($_POST['NvMDP']) && !empty($_POST['NvMDP2']) && !empty($_POST['AncMDP']) || !empty($_POST['MAjDate']))
+				{
+					if (isset($_POST['MAjDate']))
+					{
+							$resultat = $this->maVideotheque->MajDateAbonnement();
+					}else
+						{
+						$AncienMDP = $_POST['AncMDP'];
+						$NouveauMDP = $_POST['NvMDP'];
+						$TestNouveauMDp = $_POST['NvMDP2'];
+						if ($NouveauMDP == $TestNouveauMDp)
+						{
+							$resultat = $this->maVideotheque->ModifMDP($NouveauMDP, $AncienMDP);
+						}
+						else{
+						echo '<pi>Les deux mots de passe ne sont pas les mêmes</pi>';
+						}
+					}
+				}
+				else{
+					require 'Vues/modif.php';
+				}
+
 				break;
 			//CAS ajouter un utilisateur ------------------------------------------------------------------------------
 			case 'nouveauLogin' :
@@ -109,16 +131,12 @@ class Controleur
 				$uneDate=$_GET['dateAbonnementClient'];
 
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
-
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
-				// ici il faut pouvoir vérifier un login un nouveau utilisateur
-				//Je récupère les login et password saisi et je verifie leur existancerequire
-				//pour cela je verifie dans le conteneurClient via la gestion.
-				$unLogin=$_GET['login'];
-				$unPassword=$_GET['password'];
-				$resultat=$this->maVideotheque->verifLogin($unLogin,$unPassword);
+				$unLogin=$_SESSION['login'];
+				$unPassword=$_SESSION['password'];
+				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{
