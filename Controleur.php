@@ -130,12 +130,25 @@ class Controleur
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
+<<<<<<< HEAD
 				break;
 			//CAS verifier un utilisateur ------------------------------------------------------------------------------
 			case 'verifLogin' :
 				$unLogin=$_SESSION['login'];
 				$unPassword=$_SESSION['password'];
 				$resultat=$this->maVideotheque->verifLogin($unLogin, $unPassword);
+=======
+								
+				break;
+			//CAS verifier un utilisateur ------------------------------------------------------------------------------
+			case 'verifLogin' :
+				// ici il faut pouvoir vérifier un login un nouveau utilisateur
+				//Je récupère les login et password saisi et je verifie leur existancerequire
+				//pour cela je verifie dans le conteneurClient via la gestion.
+				$unLogin=$_GET['login'];
+				$unPassword=$_GET['password'];
+				$resultat=$this->maVideotheque->verifLogin($unLogin);
+>>>>>>> parent of 5c9f0d6... Problème connection réglé
 						//si le client existe alors j'affiche le menu et la page visuGenre.php
 						if($resultat==1)
 						{
