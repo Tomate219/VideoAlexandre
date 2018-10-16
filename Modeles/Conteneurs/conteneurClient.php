@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('Modeles/Metiers/client.php');
 
 Class conteneurClient
@@ -130,4 +130,5 @@ if (strcmp($unLogin,$testLogin)==0 )
 	return $trouve;
 }
 }
+
 ?>

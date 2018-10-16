@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //include du fichier GESTION pour les objets (Modeles)
 include 'Modeles/gestionVideo.php';
 
@@ -107,17 +107,7 @@ class Controleur
 				$unPrénom=$_GET['prenomClient'];
 				$unMail=$_GET['emailClient'];
 				$uneDate=$_GET['dateAbonnementClient'];
-				// echo'lancement de la recherche ';
-				// $resultat=$this->maVideotheque->verifLoginNU($unLogin);
-				// echo'le resultat de la recherche est '.$resultat;
-				// 		//si le client existe alors j'affiche le menu et la page visuGenre.php
-				// 		if($resultat==1)
-				// 		{
-				// 			echo'normalement ca break';
-				// 			break;
-				// 		}
-				// 		else{
-				// 			echo'ajout du client ';
+
 			$this->maVideotheque->ajouteUnClient($unLogin, $unPassword,$unPrénom,$unNom,$unMail,$uneDate);
 
 				break;
