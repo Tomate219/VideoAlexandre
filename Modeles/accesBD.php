@@ -18,20 +18,18 @@ class accesBD
 	public function __construct()
 		{
 		// ORDI PROFSIO
-		
 		$this->hote="172.16.0.50";
 		$this->port="";
 		$this->login="ALT18GRAVAN";
 		$this->passwd="gravran123!";
 		$this->base="VideoPPE3Groupe4";
-		
 
 		// ORDI DEV2
-	/*	$this->hote = "DESKTOP-GOIO89N\SQLEXPRESS";
+		/*$this->hote = "localhost";
 		$this->port = "";
-		$this->login = "clement123!";
-		$this->passwd = "clement123!";
-		$this->base = "VideoOnline";*/
+		$this->login = "Panda";
+		$this->passwd = "UgbNu74!";
+		$this->base = "videoppe3";*/
 		$this->connexion();
 
 		}
@@ -97,25 +95,38 @@ class accesBD
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function insertClient($unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unLoginClient,$unPwdClient)
 		{
-		//génération automatique de l'identifiant
-		$sonId = $this->donneProchainIdentifiant("client","idClient");
+			echo "toto".$unLoginClient;
+			$requete = $this->conn->prepare("SELECT count(*) FROM CLIENT WHERE login= '".$unLoginClient."'");
+			$requete->bindValue(1,$unLoginClient);
+			if($requete->execute())
+			{
+					$row=$requete->fetch(PDO::FETCH_NUM);
+					if ($row[0]==0)
+					{
+							//génération automatique de l'identifiant
+							$sonId = $this->donneProchainIdentifiant("client","idClient");
+echo "lancement de la requete";
+							$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
 
-		$requete = $this->conn->prepare("INSERT INTO CLIENT (nomClient,prenomClient, emailClient, dateAbonnementClient,login, pwd,actif) VALUES (?,?,?,?,?,?,0)");
-		//définition de la requête SQL
-		$requete->bindValue(1,$unNomClient);
-		$requete->bindValue(2,$unPrenomClient);
-		$requete->bindValue(3,$unEmailClient);
-		$requete->bindValue(4,$uneDateAbonnement);
-		$requete->bindValue(5,$unLoginClient);
-		$requete->bindValue(6,$unPwdClient);
-		//exécution de la requête SQL
-		if(!$requete->execute())
-		{
-			die("Erreur dans insertClient : ".$requete->errorCode());
-		}
+							$requete->bindValue(1,$unNomClient);
+							$requete->bindValue(2,$unPrenomClient);
+							$requete->bindValue(3,$unEmailClient);
+							$requete->bindValue(4,$uneDateAbonnement);
+							$requete->bindValue(5,$unLoginClient);
+							$requete->bindValue(6,$unPwdClient);
+							$requete->execute();
+							return $sonId;
+						}
+				}
+				else
+				{
+					die("Erreur dans insertClient : ".$requete->errorCode());
+				}
+
 
 		//retour de l'identifiant du nouveau tuple
-		return $sonId;
+
+
 		}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------CREATION DE LA REQUETE D'INSERTION DES GENRES------------------------------------------------------------------------------------------------------------------------------------------------
@@ -384,6 +395,7 @@ class accesBD
 			//Retourne le prochain identifiant
 			while($row = $requete->fetch(PDO::FETCH_NUM))
 			{
+
 				$nbEpisode = $row[0];
 			}
 			return $nbEpisode+1;
@@ -393,37 +405,6 @@ class accesBD
 			die('Erreur sur donneProchainIdentifiantEpisode : '+$requete->errorCode());
 		}
 		}
-			public function ModiferLeMotDePasse($unNvMDP,$unLogin,$AncienMDP)
-			{
-				$MotdePasse=$unNvMDP;
-				$MDP_db = $_SESSION['password'];
-				if ($AncienMDP == $MDP_db && isset($unLogin))
-					{
-						$requete = $this->conn->prepare("UPDATE client SET pwd= '".$unNvMDP."' WHERE login= '".$unLogin."';");
-						// /UPDATE client SET pwd='Therriault' WHERE login='Therriault'
-						if($requete->execute())
-							{
-								echo ("Mot de passe de ".$unLogin." changé en : ".$unNvMDP);
-								echo '<a href="javascript:history.go(-2)"> Retour</a>';
-							}
-					}
-					else{
-						echo "Ancien nouveau mot de passe erroné";
-						echo '<a href="javascript:history.go(-1)"> Retour</a>';
-					}
-			}
-			public function ModifDateAbonnement($unLogin)
-			{
-				$DateDuJour=new DateTime(); //this returns the current date time
-				$result = $DateDuJour->format('Y-m-d');
-				echo $result;
-				$requete = $this->conn->prepare("UPDATE client SET dateAbonnementClient='".$result."' WHERE login= '".$unLogin."';");
-				if($requete->execute())
-					{
-						echo '<a href="javascript:history.go(-2)"> Retour</a>';
-					}
-			}
-	}//Fin de classe
-
+	}
 
 ?>

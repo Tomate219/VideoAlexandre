@@ -158,32 +158,32 @@ Class gestionVideo
 				$this->tousLesEmprunts->mettreUnEmpruntEnPlus($resultat[$nb][0], $resultat[$nb][1],$unClient,$leSupport);
 			    $nb++;
 			}
+
 		}
 //METHODE QUI VERIF LE LOGIN ET LE PASSWORD DE L UTILISATEUR
 	public function verifLogin($unLogin, $unPassword)
 	{
 		$resultat=$this->tousLesClients->verificationExistanceClient($unLogin, $unPassword);
-		if ($resultat == 1)
-		{
-			$testDateAbonnement=$this->tousLesClients->verificationDateAbonnement($unLogin);
-			if($testDateAbonnement == 1)
-			{
-				echo '<pi style="color:#00FF00;">Vous êtes abonné à notre bibliothèque</pi>';
-			}
-			else
-			{
-				echo '<pi style="color:#FF0000;">Vous devez renouveler votre abonnement</pi>';
-			}
-		}
 		return $resultat;
 	}
+
+	public function verifLoginNU($unLogin)
+	{
+		$resultat=$this->tousLesClients->verifNU($unLogin);
+		return $resultat;
+	}
+
+
+
+
+
 //METHODE INSERANT UN CLIENT----------------------------------------------------------------------------------------------------------
-	public function ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement)
+	public function ajouteUnClient($unIdClient,$unPWD ,$unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement)
 		{
 		//insertion du client dans la base de données
-		$sonNumero = $this->maBD->insertClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
+		$sonNumero = $this->maBD->insertClient($unNomClient , $unPrenomClient, $unEmailClient, $uneDateAbonnement,$unIdClient,$unPWD);
 		//instanciation du client et ajout de celui-ci dans la collection
-		$this->tousLesClients->ajouteUnClient($unIdClient, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
+		$this->tousLesClients->ajouteUnClient($unIdClient,$unPWD, $unNomClient, $unPrenomClient, $unEmailClient, $uneDateAbonnement);
 		}
 	//METHODE INSERANT UN FILM----------------------------------------------------------------------------------------------------------
 	public function ajouteUnFilm($unIdFilm,$unTitreFilm, $unRealisateurFilm, $unIdGenre,$uneDureeFilm)
@@ -342,19 +342,8 @@ Class gestionVideo
 		{
 		return $this->tousLesEpisodes->lesEpisodesAuFormatHTML();
 		}
-		//METHODE QUI REOTURNE LE LOGIN DE L'UTILISATEUR COURANT -------------------------------------------------------------------------
-		public function ModifMDP($LeNvMDP,$AncienMDP)
-		{
-				$LoginClient=$_SESSION['login'];
-				$resultat = $this->maBD->ModiferLeMotDePasse($LeNvMDP, $LoginClient,$AncienMDP);
-				return $resultat;
 
-		}
-		public function MajDateAbonnement()
-		{
-			$LoginClient=$_SESSION['login'];
-			$vretour = $this->maBD->ModifDateAbonnement($LoginClient);
-		}
+
 	}
 
 ?>

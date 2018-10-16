@@ -107,64 +107,28 @@ Class conteneurClient
 				}
 			}
 		return $trouve;
-
-		}
-
-		public function verificationDateAbonnement($unLogin)
-		{
-			$valide=false;
-			$DateDuJour = $this->getDatetimeNow(); //Date du jour
-			$iClient = $this->lesClients->getIterator();
-
-				$testDateAbonnement = $this->donneDateAbonnementDepuisLogin($unLogin); //Recuperation de la date abonnement du client
-				$DateAbonnement = new DateTime($testDateAbonnement); //La date d'abonnement du client
-
-				$interval = date_diff($DateAbonnement,$DateDuJour); //Calcul de la difference de date entre celle de l'abonnemet et la date du jour
-				$NbdeJourAbonné = $interval->format('%R%a'); //Changement du format date en int
-
-				if($NbdeJourAbonné <= 30) // comparaison du NbdeJourAbonné et de l'équivalent d'un moi d'abonnement
-				{
-					$valide=1; //L'abonnement est encore valide
-				}
-
-				return $valide;
-		}
-
-
-		function getDatetimeNow()
-		{
-		    $DateZone = new DateTimeZone('Brazil/East');
-
-		    $DateTimeNow = new DateTime();
-		    $DateTimeNow->setTimezone($DateZone);
-		    return $DateTimeNow;
-		}
-			public function donneDateAbonnementDepuisLogin($unLogin)
-				{
-				//initialisation d'un booléen (on part de l'hypothèse que le client n'existe pas)
-				$trouve=false;
-				$testDate=null;
-
-				//création d'un itérateur sur la collection lesClients
-				$iClient = $this->lesClients->getIterator();
-				//TQ on a pas trouvé le client et que l'on est pas arrivé au bout de la collection
-				while ((!$trouve)&&($iClient->valid()))
-					{
-					//SI le numéro du client courant correspond au numéro passé en paramètre
-					if (trim($iClient->current()->getLoginClient())==$unLogin)
-						{
-						//maj du booléen
-						$trouve=true;
-						//sauvegarde du client courant
-						$testDate = trim($iClient->current()->getDateAbonnementClient());
-						}
-					//SINON on passe au client suivant
-					else
-						$iClient->next();
-					}
-				return $testDate;
-				}
 	}
+	//public function ajoutTotal{}
 
+public function verifNU($unLogin){
+	$trouve=0;
+$iClient = $this->lesClients->getIterator();
+while ((!$trouve)&&($iClient->valid()))
+		{
+$testLogin = trim($iClient->current()->getLoginClient());
+if (strcmp($unLogin,$testLogin)==0 )
+			{
+			//maj du booléen
+			$trouve=1;
+			}
+		//SINON on passe au client suivant
+		else
+			{
+				$iClient->next();
+			}
+		}
+	return $trouve;
+}
+}
 
 ?>
